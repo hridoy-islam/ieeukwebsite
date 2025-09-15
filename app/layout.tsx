@@ -5,10 +5,54 @@ import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
+// export const metadata: Metadata = {
+//   title: "Omniscient Education - Empowering Minds Through Excellence",
+//   description:
+//     "Discover world-class education opportunities with Omniscient. We bridge the gap between ambition and achievement through innovative learning solutions and global partnerships.",
+// };
+
 export const metadata: Metadata = {
-  title: "Omniscient Education - Empowering Minds Through Excellence",
+  title: {
+    default: "Omniscient Education",
+    template: "%s | Omniscient Education",
+  },
   description:
     "Discover world-class education opportunities with Omniscient. We bridge the gap between ambition and achievement through innovative learning solutions and global partnerships.",
+  keywords: [
+    "Omniscient Education",
+    "higher education",
+    "courses in London",
+    "student accommodation",
+    "career support",
+    "alumni network",
+  ],
+  openGraph: {
+    title: "Omniscient Education",
+    description:
+      "Discover world-class education opportunities with Omniscient. We bridge the gap between ambition and achievement through innovative learning solutions and global partnerships.",
+    url: "/",
+    siteName: "Omniscient Education",
+    images: [
+      {
+        url: "/omniscient-logo.png",
+        width: 1200,
+        height: 630,
+        alt: "Omniscient Education",
+      },
+    ],
+    locale: "en_GB",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Omniscient Education",
+    description:
+      "Discover world-class education opportunities with Omniscient. We bridge the gap between ambition and achievement through innovative learning solutions and global partnerships.",
+    images: ["/omniscient-logo.png"],
+  },
+  alternates: {
+    canonical: "/",
+  },
 };
 
 export default function RootLayout({
