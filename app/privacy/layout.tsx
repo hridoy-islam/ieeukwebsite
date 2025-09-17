@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     siteName: "Omniscient Education",
     images: [
       {
-        url: "/omniscient-logo.png",
+        url: "/logo.jpg",
         width: 1200,
         height: 630,
         alt: "Privacy Policy - Omniscient Education",
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     title: "Privacy Policy",
     description:
       "Learn how Omniscient Education collects, stores, and protects your personal information under UK GDPR and the Data Protection Act 2018.",
-    images: ["/omniscient-logo.png"],
+    images: ["/logo.jpg"],
   },
   alternates: {
     canonical: "/privacy",

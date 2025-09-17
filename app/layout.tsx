@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     siteName: "Omniscient Education",
     images: [
       {
-        url: "/omniscient-logo.png",
+        url: "/logo.jpg",
         width: 1200,
         height: 630,
         alt: "Omniscient Education",
@@ -48,7 +48,7 @@ export const metadata: Metadata = {
     title: "Omniscient Education",
     description:
       "Discover world-class education opportunities with Omniscient. We bridge the gap between ambition and achievement through innovative learning solutions and global partnerships.",
-    images: ["/omniscient-logo.png"],
+    images: ["/logo.jpg"],
   },
   alternates: {
     canonical: "/",

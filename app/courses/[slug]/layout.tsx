@@ -13,7 +13,7 @@ export async function generateMetadata(props: PageProps): Promise<Metadata> {
     title: "Courses",
     description:
       "Explore Omniscient Education courses in Business, Technology, Healthcare, and Education. Find the right program for your career and academic goals.",
-    image: "/about.jpg",
+    image: "/educationTraining.jpg",
     keywords: ["courses", "Omniscient Education", "higher education", "London college"],
   };
 

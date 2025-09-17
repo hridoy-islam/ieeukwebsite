@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     siteName: "Omniscient Education",
     images: [
       {
-        url: "/omniscient-logo.png",
+        url: "/logo.jpg",
         width: 1200,
         height: 630,
         alt: "Cookies Policy - Omniscient Education",
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     title: "Cookies Policy",
     description:
       "Discover how Omniscient Education uses cookies to improve your experience, analyze traffic, and support marketing while complying with UK GDPR.",
-    images: ["/omniscient-logo.png"],
+    images: ["/logo.jpg"],
   },
   alternates: {
     canonical: "/cookies",

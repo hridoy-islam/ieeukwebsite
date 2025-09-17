@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     siteName: "Omniscient Education",
     images: [
       {
-        url: "/omniscient-logo.png",
+        url: "/logo.jpg",
         width: 1200,
         height: 630,
         alt: "Partnerships",
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     title: "Partnerships",
     description:
       "Building strong partnerships with universities worldwide to ensure students access the best educational opportunities.",
-    images: ["/omniscient-logo.png"],
+    images: ["/logo.jpg"],
   },
   alternates: {
     canonical: "/partnership",
