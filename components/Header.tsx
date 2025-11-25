@@ -41,7 +41,7 @@ export default function Header() {
     <header className="relative z-50 bg-white border-b border-border shadow-sm">
       <div className="container mx-auto px-4 py-4 flex items-center justify-between">
         <Link href="/" className="flex items-center">
-          <img src="logo.jpeg" alt="IEE Logo" className="h-20 w-auto" />
+          <img src="/logo.jpeg" alt="IEE Logo" className="h-20 w-auto" />
         </Link>
 
         {/* Desktop Navigation */}

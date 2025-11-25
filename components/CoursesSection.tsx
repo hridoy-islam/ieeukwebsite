@@ -33,7 +33,7 @@ export default function CoursesSection() {
   ];
   return (
     <section className="py-20 md:py-24 bg-white">
-      <div className="max-w-6xl mx-auto px-6 md:px-8">
+      <div className="container mx-auto px-6 md:px-8">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-[#25215C] mb-4">
             Featured Courses

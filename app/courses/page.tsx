@@ -219,7 +219,7 @@ export default function CoursesPage() {
             </div>
           )}
 
-          {totalPages > 1 && (
+          {/* {totalPages > 1 && (
             <div className="flex justify-center items-center gap-2 mt-12 pt-8 border-t border-gray-200">
               <Button
                 onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
@@ -252,6 +252,61 @@ export default function CoursesPage() {
               >
                 Next
               </Button>
+            </div>
+          )} */}
+
+          {totalPages > 1 && (
+            <div className="flex justify-center items-center gap-3 mt-12 pt-8 border-t border-gray-200">
+              {/* Previous */}
+              <button
+                onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
+                disabled={currentPage === 1}
+                className={`px-4 py-2 rounded-xl text-sm font-medium transition-all
+        ${
+          currentPage === 1
+            ? "bg-gray-200 text-gray-500 cursor-not-allowed"
+            : "bg-white border border-gray-300 text-gray-700 hover:bg-gray-50"
+        }
+      `}
+              >
+                Previous
+              </button>
+
+              {/* Page numbers */}
+              {Array.from({ length: totalPages }, (_, i) => i + 1).map(
+                (page) => (
+                  <button
+                    key={page}
+                    onClick={() => setCurrentPage(page)}
+                    className={`px-4 py-2 rounded-xl text-sm font-medium transition-all
+          ${
+            currentPage === page
+              ? "bg-[#25215C] text-white shadow-md"
+              : "bg-white border border-gray-300 text-gray-700 hover:bg-gray-50"
+          }
+        `}
+                  >
+                    {page}
+                  </button>
+                )
+              )}
+
+              {/* Next */}
+              <button
+                onClick={() =>
+                  setCurrentPage((p) => Math.min(totalPages, p + 1))
+                }
+                disabled={currentPage === totalPages}
+                className={`px-4 py-2 rounded-xl text-sm font-medium transition-all
+        ${
+          currentPage === totalPages
+            ? "bg-gray-200 text-gray-500 cursor-not-allowed"
+            : "bg-white border border-gray-300 text-gray-700 hover:bg-gray-50"
+        }
+      `}
+              >
+                Next
+              </button>
             </div>
           )}
         </div>
