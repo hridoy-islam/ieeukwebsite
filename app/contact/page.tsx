@@ -1,41 +1,52 @@
 "use client";
 import { useState } from "react";
 import type React from "react";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
 import {
   Mail,
   Phone,
   MapPin,
-  Clock,
-  Send,
   CheckCircle,
-  MessageSquare,
-  Users,
+  Facebook,
+  Twitter,
+  Share2,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
-    name: "",
+    fullName: "",
     email: "",
     phone: "",
-    subject: "",
-    message: "",
+    nationality: "",
+    countryToStudy: "",
+    interestedCourse: "",
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission here
+    setIsLoading(true);
+
+    await new Promise((resolve) => setTimeout(resolve, 2000));
+
+    console.log("Form Data:", formData);
     setIsSubmitted(true);
-    setTimeout(() => setIsSubmitted(false), 3000);
+    setIsLoading(false);
+
+    setTimeout(() => setIsSubmitted(false), 5000);
+    setFormData({
+      fullName: "",
+      email: "",
+      phone: "",
+      nationality: "",
+      countryToStudy: "",
+      interestedCourse: "",
+    });
   };
 
   const handleChange = (
-    e: React.ChangeEvent<
-      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
     setFormData({
       ...formData,
@@ -43,325 +54,322 @@ export default function ContactPage() {
     });
   };
 
-  const contactInfo = [
-    {
-      icon: <MapPin className="w-6 h-6" />,
-      title: "Visit Our Office",
-      details: "156 B Green Street, Upton Park, London, E7 8JQ, U.K",
-      color: "purple",
-    },
-    {
-      icon: <Phone className="w-6 h-6" />,
-      title: "Call Us",
-      details: "+44 (0) 203 0110 309",
-      color: "pink",
-    },
-    {
-      icon: <Mail className="w-6 h-6" />,
-      title: "Email Us",
-      details: "info@omniscient.org.uk",
-      color: "purple",
-    },
-    {
-      icon: <Clock className="w-6 h-6" />,
-      title: "Office Hours",
-      details: "Mon-Fri: 9AM-6PM, Sat: 10AM-4PM",
-      color: "pink",
-    },
+  const countries = ["USA", "UK", "Canada", "Australia", "Germany", "UAE"];
+  const intakes = [
+    "January 2025",
+    "February 2025",
+    "March 2025",
+    "April 2025",
+    "May 2025",
+    "June 2025",
+    "July 2025",
+    "August 2025",
+    "September 2025",
+    "October 2025",
+    "November 2025",
+    "December 2025",
   ];
 
   return (
-    <div className="min-h-screen bg-white">
-      <Header />
+    <main className="bg-white">
+      {/* Header Section */}
+      <section className="bg-gradient-to-r from-[#25215C] to-[#D04418] py-16 md:py-20">
+        <div className="container mx-auto px-6 md:px-8">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-8">
+            <div>
+              <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
+                Contact
+              </h1>
+              <p className="text-lg text-white/90">IEE - Contact</p>
+            </div>
 
-      {/* Hero Section */}
-      <section className="relative py-20 bg-gradient-to-br from-purple-50 to-pink-50 overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(147,51,234,0.1),transparent_50%)]"></div>
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="text-center max-w-4xl mx-auto">
-            <MessageSquare className="w-16 h-16 text-purple-600 mx-auto mb-6" />
-            <h1 className="text-5xl md:text-6xl font-black mb-6">
-              <span className="text-gray-900">Get In </span>
-              <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
-                Touch
-              </span>
-            </h1>
-            <p className="text-xl md:text-2xl text-gray-600 leading-relaxed">
-              Ready to start your educational journey? We're here to help you
-              every step of the way.
-            </p>
+            {/* Social Share */}
+            <div className="flex items-center gap-4">
+              <a
+                href="#"
+                className="w-10 h-10 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center text-white transition-colors"
+              >
+                <Facebook className="w-5 h-5" />
+              </a>
+              <a
+                href="#"
+                className="w-10 h-10 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center text-white transition-colors"
+              >
+                <Twitter className="w-5 h-5" />
+              </a>
+              <a
+                href="#"
+                className="w-10 h-10 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center text-white transition-colors"
+              >
+                <Mail className="w-5 h-5" />
+              </a>
+              <a
+                href="#"
+                className="w-10 h-10 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center text-white transition-colors"
+              >
+                <Share2 className="w-5 h-5" />
+              </a>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Contact Form and Info */}
-      <section className="py-20">
-        <div className="container mx-auto px-4">
-          <div className="grid lg:grid-cols-3 gap-16">
-            {/* Contact Form - Takes 2 columns */}
-            <div className="lg:col-span-2 bg-white rounded-2xl shadow-xl p-8 border border-gray-100">
-              <div className="flex items-center mb-6">
-                <Send className="w-8 h-8 text-purple-600 mr-3" />
-                <h2 className="text-3xl font-black">
-                  <span className="text-gray-900">Send Us a </span>
-                  <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
-                    Message
-                  </span>
+      {/* Main Content */}
+      <section className="py-16 md:py-24 bg-gray-50">
+        <div className="container mx-auto px-6 md:px-8">
+          <div className="grid lg:grid-cols-3 gap-12">
+            {/* Contact Form */}
+            <div className="lg:col-span-2">
+              <div className="bg-white rounded-xl p-8 md:p-12 shadow-sm border border-gray-200">
+                <h2 className="text-3xl font-bold text-gray-900 mb-2">
+                  Book Your Free Consultation
                 </h2>
-              </div>
+                <p className="text-gray-600 mb-8">
+                  Choosing to study in a foreign country is an important
+                  decision, and we are aware that you will probably have many
+                  questions before you come to desired colleges and
+                  universities. If you cannot find the answer to your question
+                  on our website or wish to get further information please do
+                  feel free to contact us using the phone number on the right or
+                  through the form below. We will try and answer your query as
+                  early as possible.
+                </p>
 
-              {isSubmitted ? (
-                <div className="text-center py-12">
-                  <CheckCircle className="w-16 h-16 text-green-500 mx-auto mb-4" />
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">
-                    Message Sent!
-                  </h3>
-                  <p className="text-gray-600">
-                    We'll get back to you within 24 hours.
-                  </p>
-                </div>
-              ) : (
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <div>
-                      <label
-                        htmlFor="name"
-                        className="block text-sm font-semibold text-gray-700 mb-2"
-                      >
-                        Full Name *
-                      </label>
-                      <input
-                        type="text"
-                        id="name"
-                        name="name"
-                        required
-                        value={formData.name}
-                        onChange={handleChange}
-                        className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200"
-                        placeholder="Enter your full name"
-                      />
+                {isSubmitted ? (
+                  <div className="text-center py-12">
+                    <div className="inline-flex items-center justify-center w-16 h-16 bg-green-100 rounded-full mb-4">
+                      <CheckCircle className="w-8 h-8 text-green-600" />
                     </div>
-                    <div>
-                      <label
-                        htmlFor="email"
-                        className="block text-sm font-semibold text-gray-700 mb-2"
-                      >
-                        Email Address *
-                      </label>
-                      <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        required
-                        value={formData.email}
-                        onChange={handleChange}
-                        className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200"
-                        placeholder="Enter your email"
-                      />
-                    </div>
+                    <h3 className="text-2xl font-bold text-gray-900 mb-2">
+                      Thank You!
+                    </h3>
+                    <p className="text-gray-600">
+                      We'll get back to you within 24 hours.
+                    </p>
                   </div>
-
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <div>
-                      <label
-                        htmlFor="phone"
-                        className="block text-sm font-semibold text-gray-700 mb-2"
-                      >
-                        Phone Number
-                      </label>
-                      <input
-                        type="tel"
-                        id="phone"
-                        name="phone"
-                        value={formData.phone}
-                        onChange={handleChange}
-                        className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200"
-                        placeholder="Enter your phone number"
-                      />
-                    </div>
-                    <div>
-                      <label
-                        htmlFor="subject"
-                        className="block text-sm font-semibold text-gray-700 mb-2"
-                      >
-                        Subject *
-                      </label>
-                      <select
-                        id="subject"
-                        name="subject"
-                        required
-                        value={formData.subject}
-                        onChange={handleChange}
-                        className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200"
-                      >
-                        <option value="">Select a subject</option>
-                        <option value="admissions">Admissions Inquiry</option>
-                        <option value="courses">Course Information</option>
-                        <option value="partnership">
-                          Partnership Opportunities
-                        </option>
-                        <option value="support">Student Support</option>
-                        <option value="other">Other</option>
-                      </select>
-                    </div>
-                  </div>
-
-                  <div>
-                    <label
-                      htmlFor="message"
-                      className="block text-sm font-semibold text-gray-700 mb-2"
-                    >
-                      Message *
-                    </label>
-                    <textarea
-                      id="message"
-                      name="message"
-                      required
-                      rows={6}
-                      value={formData.message}
-                      onChange={handleChange}
-                      className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200 resize-none"
-                      placeholder="Tell us how we can help you..."
-                    ></textarea>
-                  </div>
-
-                  <Button
-                    type="submit"
-                    className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-bold py-4 rounded-xl transition-all duration-300 group"
-                  >
-                    <span className="flex items-center justify-center">
-                      Send Message
-                      <Send className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
-                    </span>
-                  </Button>
-                </form>
-              )}
-            </div>
-
-            {/* Contact Information - Takes 1 column */}
-            <div className="space-y-8">
-              <div className="flex items-center mb-6">
-                <Users className="w-8 h-8 text-purple-600 mr-3" />
-                <h2 className="text-3xl font-black">
-                  <span className="text-gray-900">Contact </span>
-                  <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
-                    Information
-                  </span>
-                </h2>
-              </div>
-
-              <p className="text-lg text-gray-600 leading-relaxed mb-8">
-                We're here to answer your questions and help you take the next
-                step in your educational journey.
-              </p>
-
-              <div className="space-y-6">
-                {contactInfo.map((info, index) => (
-                  <div
-                    key={index}
-                    className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 group"
-                  >
-                    <div className="flex items-start space-x-4">
-                      <div
-                        className={`w-12 h-12 ${
-                          info.color === "purple"
-                            ? "bg-purple-100 text-purple-600"
-                            : "bg-pink-100 text-pink-600"
-                        } rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform`}
-                      >
-                        {info.icon}
+                ) : (
+                  <form onSubmit={handleSubmit} className="space-y-6">
+                    <div className="grid md:grid-cols-2 gap-6">
+                      <div>
+                        <label
+                          htmlFor="fullName"
+                          className="block text-sm font-semibold text-gray-900 mb-2"
+                        >
+                          Full Name: *
+                        </label>
+                        <input
+                          type="text"
+                          id="fullName"
+                          name="fullName"
+                          required
+                          value={formData.fullName}
+                          onChange={handleChange}
+                          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#D04418] focus:border-transparent"
+                          placeholder="Your full name"
+                        />
                       </div>
                       <div>
-                        <h3 className="text-lg font-bold text-gray-900 mb-2">
-                          {info.title}
-                        </h3>
-                        <p className="text-gray-600 leading-relaxed">
-                          {info.details}
+                        <label
+                          htmlFor="email"
+                          className="block text-sm font-semibold text-gray-900 mb-2"
+                        >
+                          Email Address: *
+                        </label>
+                        <input
+                          type="email"
+                          id="email"
+                          name="email"
+                          required
+                          value={formData.email}
+                          onChange={handleChange}
+                          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#D04418] focus:border-transparent"
+                          placeholder="your@email.com"
+                        />
+                      </div>
+                    </div>
+
+                    <div className="grid md:grid-cols-2 gap-6">
+                      <div>
+                        <label
+                          htmlFor="phone"
+                          className="block text-sm font-semibold text-gray-900 mb-2"
+                        >
+                          Phone Number: *
+                        </label>
+                        <input
+                          type="tel"
+                          id="phone"
+                          name="phone"
+                          required
+                          value={formData.phone}
+                          onChange={handleChange}
+                          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#D04418] focus:border-transparent"
+                          placeholder="+44 (0)xxx xxx xxxx"
+                        />
+                      </div>
+                      <div>
+                        <label
+                          htmlFor="nationality"
+                          className="block text-sm font-semibold text-gray-900 mb-2"
+                        >
+                          Nationality: *
+                        </label>
+                        <input
+                          type="text"
+                          id="nationality"
+                          name="nationality"
+                          required
+                          value={formData.nationality}
+                          onChange={handleChange}
+                          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#D04418] focus:border-transparent"
+                          placeholder="Your nationality"
+                        />
+                      </div>
+                    </div>
+
+                    <div className="grid md:grid-cols-2 gap-6">
+                      <div>
+                        <label
+                          htmlFor="countryToStudy"
+                          className="block text-sm font-semibold text-gray-900 mb-2"
+                        >
+                          Select The Country You Want To Study: *
+                        </label>
+                        <select
+                          id="countryToStudy"
+                          name="countryToStudy"
+                          required
+                          value={formData.countryToStudy}
+                          onChange={handleChange}
+                          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#D04418] focus:border-transparent"
+                        >
+                          <option value="">Please select</option>
+                          {countries.map((country) => (
+                            <option key={country} value={country}>
+                              {country}
+                            </option>
+                          ))}
+                        </select>
+                      </div>
+                      <div>
+                        <label
+                          htmlFor="interestedCourse"
+                          className="block text-sm font-semibold text-gray-900 mb-2"
+                        >
+                          Interested Course: *
+                        </label>
+                        <input
+                          type="text"
+                          id="interestedCourse"
+                          name="interestedCourse"
+                          required
+                          value={formData.interestedCourse}
+                          onChange={handleChange}
+                          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#D04418] focus:border-transparent"
+                          placeholder="e.g. Business, Engineering"
+                        />
+                      </div>
+                    </div>
+
+                    <input type="hidden" name="form_check" value="" />
+
+                    <Button
+                      type="submit"
+                      disabled={isLoading}
+                      className="w-full bg-gradient-to-r from-[#25215C] to-[#D04418] text-white font-bold py-3 rounded-lg hover:shadow-lg transition-shadow disabled:opacity-50"
+                    >
+                      {isLoading ? "Sending..." : "Send"}
+                    </Button>
+                  </form>
+                )}
+              </div>
+            </div>
+
+            {/* Sidebar - Contact Info */}
+            <div className="lg:col-span-1 space-y-6">
+              {/* Main Contact Info */}
+              <div className="bg-white rounded-xl p-8 shadow-sm border border-gray-200">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">IEE</h3>
+
+                <div className="space-y-6">
+                  <div>
+                    <div className="flex items-start gap-3 mb-3">
+                      <MapPin className="w-5 h-5 text-[#D04418] flex-shrink-0 mt-1" />
+                      <div>
+                        <h4 className="font-semibold text-gray-900 mb-1">
+                          Address
+                        </h4>
+                        <p className="text-gray-600 text-sm">
+                          International Education Exchange
+                          <br />
+                          80-82 Nelson Street London E1 2DY, UK
                         </p>
                       </div>
                     </div>
                   </div>
-                ))}
+
+                  <div>
+                    <div className="flex items-start gap-3 mb-3">
+                      <Mail className="w-5 h-5 text-[#D04418] flex-shrink-0 mt-1" />
+                      <div>
+                        <h4 className="font-semibold text-gray-900 mb-1">
+                          E-mail
+                        </h4>
+                        <a
+                          href="mailto:info@ieeuk.com"
+                          className="text-[#D04418] hover:text-[#25215C] transition-colors text-sm"
+                        >
+                          info@ieeuk.com
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div>
+                    <div className="flex items-start gap-3">
+                      <Phone className="w-5 h-5 text-[#D04418] flex-shrink-0 mt-1" />
+                      <div>
+                        <h4 className="font-semibold text-gray-900 mb-1">
+                          Phone
+                        </h4>
+                        <div className="space-y-1 text-sm text-gray-600">
+                          <p>
+                            <a
+                              href="tel:+442033719168"
+                              className="text-[#D04418] hover:text-[#25215C] transition-colors"
+                            >
+                              +44 (0) 203 3719 168
+                            </a>
+                          </p>
+                          <p>
+                            <a
+                              href="tel:+442073652376"
+                              className="text-[#D04418] hover:text-[#25215C] transition-colors"
+                            >
+                              +44 (0) 73 6523 3764
+                            </a>
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
 
-              {/* Map Placeholder */}
-              <div className="bg-gradient-to-br from-purple-100 to-pink-100 rounded-2xl p-8 text-center">
-                <MapPin className="w-16 h-16 text-purple-600 mx-auto mb-4" />
-                <h3 className="text-xl font-bold text-gray-900 mb-2">
-                  Find Us on Map
-                </h3>
-                <p className="text-gray-600 mb-4">
-                  Located in the heart of London, easily accessible by public
-                  transport.
+              {/* Newsletter Signup */}
+              <div className="bg-gradient-to-br from-[#25215C] to-[#D04418] rounded-xl p-6 text-white">
+                <h4 className="font-bold mb-3">Register now to win an iPad*</h4>
+                <p className="text-sm text-white/80 mb-4">
+                  Subscribe to our newsletter for updates and exclusive offers.
                 </p>
-                <Button className="bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold px-6 py-3 rounded-xl hover:shadow-lg transition-all duration-300">
-                  View on Google Maps
-                </Button>
+                <button className="w-full bg-white text-[#25215C] font-bold py-2 rounded-lg hover:bg-gray-100 transition-colors">
+                  REGISTER
+                </button>
               </div>
             </div>
           </div>
         </div>
       </section>
-
-      {/* FAQ Section */}
-      <section className="py-20 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-black mb-6">
-              <span className="text-gray-900">Frequently Asked </span>
-              <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
-                Questions
-              </span>
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Find quick answers to common questions about our programs and
-              services.
-            </p>
-          </div>
-
-          <div className="max-w-4xl mx-auto space-y-6">
-            {[
-              {
-                question: "How do I apply for a course?",
-                answer:
-                  "You can apply online through our website or contact our admissions team for personalized guidance.",
-              },
-              {
-                question: "What are the payment options available?",
-                answer:
-                  "We offer flexible payment plans, including installments, scholarships, and corporate sponsorship options.",
-              },
-              {
-                question: "Do you provide career support after graduation?",
-                answer:
-                  "Yes, we offer comprehensive career support including job placement assistance, resume reviews, and networking opportunities.",
-              },
-              {
-                question: "Are the courses accredited?",
-                answer:
-                  "All our programs are accredited by recognized educational bodies and industry organizations.",
-              },
-              {
-                question: "Can I study part-time while working?",
-                answer:
-                  "We offer flexible scheduling options including evening and weekend classes to accommodate working professionals.",
-              },
-            ].map((faq, index) => (
-              <div
-                key={index}
-                className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300"
-              >
-                <h3 className="text-lg font-bold text-gray-900 mb-3">
-                  {faq.question}
-                </h3>
-                <p className="text-gray-600 leading-relaxed">{faq.answer}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <Footer />
-    </div>
+    </main>
   );
 }

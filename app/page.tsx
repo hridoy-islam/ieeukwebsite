@@ -1,20 +1,22 @@
 "use client";
-import Header from "@/components/Header";
 import Hero from "@/components/Hero";
-import Services from "@/components/Services";
-import WhyChooseUs from "@/components/WhyChooseUs";
-import Testimonials from "@/components/Testimonial";
-import Footer from "@/components/Footer";
+import About from "@/components/About";
+import CtaSection from "@/components/CtaSection";
+import LatestBlog from "@/components/LatestBlog";
+import CoursesSection from "@/components/CoursesSection";
+import FeatureService from "@/components/FeatureService";
+import Statstics from "@/components/Statastics";
 
 export default function HomePage() {
   return (
     <div className="min-h-screen bg-white">
-      <Header />
       <Hero />
-      <Services />
-      <WhyChooseUs />
-      <Testimonials />
-      <Footer />
+      <About />
+      <Statstics />
+      <FeatureService />
+      <CoursesSection />
+      <LatestBlog />
+      <CtaSection />
     </div>
   );
 }

@@ -4,196 +4,213 @@ import {
   Phone,
   MapPin,
   Clock,
-  Award,
-  Users,
-  Star,
-  Briefcase,
+  Facebook,
+  Twitter,
+  Linkedin,
+  Instagram,
+  ArrowRight,
+  Heart,
 } from "lucide-react";
 import Link from "next/link";
-import Image from "next/image";
+import { Button } from "@/components/ui/button";
 
 export default function Footer() {
-  const featuredLinks = [
+  const usefulLinks = [
     { name: "Home", href: "/" },
-    { name: "Services", href: "/services" },
     { name: "Courses", href: "/courses" },
-    { name: "Partnership", href: "/partnership" },
-    { name: "About Us", href: "/about" },
+    { name: "Instructors", href: "/instructors" },
+    { name: "Latest Posts", href: "/blog" },
+    { name: "Testimonials", href: "/testimonials" },
   ];
 
-  const quickLinks = [
-    { name: "Who We Are", href: "/about" },
-    { name: "Mission & Vision", href: "/about#mission" },
-    { name: "International Students", href: "/services#international" },
-    { name: "Careers", href: "/careers" },
+  const socialLinks = [
+    { icon: Facebook, href: "#", label: "Facebook" },
+    { icon: Twitter, href: "#", label: "Twitter" },
+    { icon: Linkedin, href: "#", label: "LinkedIn" },
+    { icon: Instagram, href: "#", label: "Instagram" },
   ];
 
   return (
-    <footer className="bg-gray-50 border-t border-gray-200">
-      <div className="container mx-auto px-4 py-16">
-        <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-12">
+    <footer className="relative bg-iee-dark text-white overflow-hidden">
+      {/* Background Pattern */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,hsla(var(--iee-accent),0.1),transparent_50%)]"></div>
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,hsla(var(--iee-accent),0.15),transparent_50%)]"></div>
+
+      <div className="container mx-auto px-4 py-16 relative z-10">
+        <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-12 mb-12">
           {/* Company Info */}
-          <div className="lg:col-span-1">
+          <div className="lg:col-span-1 space-y-6">
             <div className="mb-6">
-              <Image
-                src="/omniscient-logo.png"
-                alt="Omniscient Education"
-                width={200}
-                height={60}
-                className="h-12 w-auto mb-4"
+              <img
+                src="/logo.jpeg"
+                alt="IEE Logo"
+                className="h-20 w-auto mb-4"
               />
             </div>
 
-            <p className="text-gray-600 leading-relaxed mb-6">
-              Empowering minds through innovative education and comprehensive
-              learning solutions. Building bridges to global opportunities and
-              academic excellence.
+            <p className="text-gray-300 leading-relaxed text-sm">
+              International Education Exchange is working with reputed colleges
+              and universities in the UK in terms of resourcing right people for
+              the right place locally and internationally.
             </p>
 
-            {/* Stats */}
-            <div className="grid grid-cols-3 gap-4 mb-6">
-              <div className="text-center p-3 bg-white rounded-lg shadow-sm">
-                <Users className="w-6 h-6 text-purple-600 mx-auto mb-1" />
-                <div className="text-lg font-bold text-gray-900">5K+</div>
-                <div className="text-xs text-gray-500">Students</div>
-              </div>
-              <div className="text-center p-3 bg-white rounded-lg shadow-sm">
-                <Award className="w-6 h-6 text-purple-600 mx-auto mb-1" />
-                <div className="text-lg font-bold text-gray-900">15+</div>
-                <div className="text-xs text-gray-500">Years</div>
-              </div>
-              <div className="text-center p-3 bg-white rounded-lg shadow-sm">
-                <Star className="w-6 h-6 text-purple-600 mx-auto mb-1" />
-                <div className="text-lg font-bold text-gray-900">98%</div>
-                <div className="text-xs text-gray-500">Success</div>
-              </div>
+            {/* Social Links */}
+            <div className="flex space-x-4">
+              {socialLinks.map((social, index) => {
+                const IconComponent = social.icon;
+                return (
+                  <a
+                    key={index}
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center text-white/70 hover:text-white hover:bg-iee-accent transition-all duration-300 transform hover:scale-110"
+                    aria-label={social.label}
+                  >
+                    <IconComponent className="w-5 h-5" />
+                  </a>
+                );
+              })}
             </div>
           </div>
 
-          {/* Featured Links */}
+          {/* Birmingham Office */}
           <div>
-            <h3 className="text-lg font-bold text-gray-900 mb-6">
-              Featured Links
+            <h3 className="text-lg font-bold text-white mb-6 relative">
+              Birmingham Office
+              <div className="absolute -bottom-2 left-0 w-12 h-1 bg-iee-accent rounded-full"></div>
             </h3>
-            <ul className="space-y-3">
-              {featuredLinks.map((link) => (
-                <li key={link.name}>
-                  <Link
-                    href={link.href}
-                    className="text-gray-600 hover:text-purple-600 transition-colors duration-200"
-                  >
-                    {link.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Quick Links */}
-          <div>
-            <h3 className="text-lg font-bold text-gray-900 mb-6">
-              Quick Links
-            </h3>
-            <ul className="space-y-3">
-              {quickLinks.map((link) => (
-                <li key={link.name}>
-                  <Link
-                    href={link.href}
-                    className="text-gray-600 hover:text-purple-600 transition-colors duration-200"
-                  >
-                    {link.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Compact Contact Information */}
-          <div>
-            <h3 className="text-lg font-bold text-gray-900 mb-6">
-              Get In Touch
-            </h3>
-
             <div className="space-y-4">
-              {/* Address */}
               <div className="flex items-start space-x-3">
-                <MapPin className="w-5 h-5 text-purple-600 mt-1 flex-shrink-0" />
-                <div>
-                  <p className="text-gray-600 text-sm leading-relaxed">
-                    156 B Green Street, Upton Park
-                    <br />
-                    London, E7 8JQ, U.K
-                  </p>
-                </div>
+                <MapPin className="w-5 h-5 text-iee-accent flex-shrink-0 mt-0.5" />
+                <p className="text-gray-300 text-sm leading-relaxed">
+                  Unit 101F The Argent Centre
+                  <br />
+                  60 Frederick Street
+                  <br />
+                  Birmingham B1 3HS
+                </p>
               </div>
-
-              {/* Phone */}
               <div className="flex items-center space-x-3">
-                <Phone className="w-5 h-5 text-green-600 flex-shrink-0" />
+                <Phone className="w-5 h-5 text-iee-accent flex-shrink-0" />
                 <a
-                  href="tel:+442030110309"
-                  className="text-gray-600 hover:text-purple-600 transition-colors text-sm"
+                  href="tel:+441212120868"
+                  className="text-gray-300 hover:text-iee-accent transition-colors text-sm"
                 >
-                  +44 (0) 203 0110 309
+                  +44 (0)121 212 0868
                 </a>
               </div>
-
-              {/* Email */}
               <div className="flex items-center space-x-3">
-                <Mail className="w-5 h-5 text-blue-600 flex-shrink-0" />
+                <Mail className="w-5 h-5 text-iee-accent flex-shrink-0" />
                 <a
-                  href="mailto:info@omniscient.org.uk"
-                  className="text-gray-600 hover:text-purple-600 transition-colors text-sm"
+                  href="mailto:info@ieeuk.com"
+                  className="text-gray-300 hover:text-iee-accent transition-colors text-sm"
                 >
-                  info@omniscient.org.uk
+                  info@ieeuk.com
                 </a>
-              </div>
-
-              {/* Office Hours */}
-              <div className="flex items-start space-x-3">
-                <Clock className="w-5 h-5 text-orange-600 mt-1 flex-shrink-0" />
-                <div className="text-gray-600 text-sm">
-                  <div>Mon-Fri: 9AM-6PM</div>
-                  <div>Sat: 10AM-4PM</div>
-                </div>
-              </div>
-
-              {/* Careers */}
-              <div className="flex items-center space-x-3">
-                <Briefcase className="w-5 h-5 text-purple-600 flex-shrink-0" />
-                <Link
-                  href="/careers"
-                  className="text-gray-600 hover:text-purple-600 transition-colors text-sm"
-                >
-                  View Career Opportunities
-                </Link>
               </div>
             </div>
+          </div>
+
+          {/* London Office */}
+          <div>
+            <h3 className="text-lg font-bold text-white mb-6 relative">
+              London Office
+              <div className="absolute -bottom-2 left-0 w-12 h-1 bg-iee-accent rounded-full"></div>
+            </h3>
+            <div className="space-y-4">
+              <div className="flex items-start space-x-3">
+                <MapPin className="w-5 h-5 text-iee-accent flex-shrink-0 mt-0.5" />
+                <p className="text-gray-300 text-sm leading-relaxed">
+                  80-82 Nelson Street
+                  <br />
+                  E1 2DY London
+                </p>
+              </div>
+              <div className="flex items-center space-x-3">
+                <Phone className="w-5 h-5 text-iee-accent flex-shrink-0" />
+                <div className="text-gray-300 text-sm space-y-1">
+                  <div>
+                    <a
+                      href="tel:+441736523764"
+                      className="hover:text-iee-accent transition-colors"
+                    >
+                      +44 (0)73 6523 3764
+                    </a>
+                  </div>
+                  <div>
+                    <a
+                      href="tel:+441302089314"
+                      className="hover:text-iee-accent transition-colors"
+                    >
+                      +44 (0)203 089 1314
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div className="flex items-center space-x-3">
+                <Mail className="w-5 h-5 text-iee-accent flex-shrink-0" />
+                <a
+                  href="mailto:info@ieeuk.com"
+                  className="text-gray-300 hover:text-iee-accent transition-colors text-sm"
+                >
+                  info@ieeuk.com
+                </a>
+              </div>
+            </div>
+          </div>
+
+          {/* Useful Links */}
+          <div>
+            <h3 className="text-lg font-bold text-white mb-6 relative">
+              Useful Links
+              <div className="absolute -bottom-2 left-0 w-12 h-1 bg-iee-accent rounded-full"></div>
+            </h3>
+            <ul className="space-y-3">
+              {usefulLinks.map((link) => (
+                <li key={link.name}>
+                  <Link
+                    href={link.href}
+                    className="text-gray-300 hover:text-iee-accent transition-colors duration-200 flex items-center group text-sm"
+                  >
+                    {link.name}
+                  </Link>
+                </li>
+              ))}
+              <li>
+                <Link
+                  href="/contact"
+                  className="text-gray-300 hover:text-iee-accent transition-colors duration-200 flex items-center group text-sm"
+                >
+                  Contact
+                </Link>
+              </li>
+            </ul>
           </div>
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-gray-200 mt-12 pt-8">
+        <div className="border-t border-white/10 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <p className="text-gray-500 text-sm">
-              © 2024 Omniscient Education. All rights reserved.
+            <p className="text-gray-400 text-sm flex items-center">
+              © {new Date().getFullYear()} All Rights Reserved By IEE{" "}
             </p>
             <div className="flex space-x-6 text-sm">
               <Link
-                href="/privacy"
-                className="text-gray-500 hover:text-purple-600 transition-colors"
+                href="/privacy-policy"
+                className="text-gray-400 hover:text-iee-accent transition-colors"
               >
                 Privacy Policy
               </Link>
               <Link
-                href="/terms"
-                className="text-gray-500 hover:text-purple-600 transition-colors"
+                href="/terms-of-service"
+                className="text-gray-400 hover:text-iee-accent transition-colors"
               >
                 Terms of Service
               </Link>
               <Link
-                href="/cookies"
-                className="text-gray-500 hover:text-purple-600 transition-colors"
+                href="/cookie-policy"
+                className="text-gray-400 hover:text-iee-accent transition-colors"
               >
                 Cookie Policy
               </Link>

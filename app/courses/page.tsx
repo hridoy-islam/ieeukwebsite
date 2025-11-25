@@ -1,330 +1,282 @@
 "use client";
-import { useState } from "react";
 import {
-  Search,
-  Filter,
+  GraduationCap,
   Clock,
-  Users,
-  Star,
-  BookOpen,
-  Award,
+  DollarSign,
   ArrowRight,
+  Search,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
 import Link from "next/link";
-import { courses } from "@/utils/data";
+import { useState } from "react";
 
 export default function CoursesPage() {
-  const [selectedCategory, setSelectedCategory] = useState("All");
-  const [searchTerm, setSearchTerm] = useState("");
-
-  const categories = [
-    "All",
-    "Business",
-    "Technology",
-    "Healthcare",
-    "Education",
-    "Engineering",
+  const allCourses = [
+    {
+      name: "BSc Computer Science",
+      university: "University of Manchester",
+      duration: "3 Years",
+      fees: "£9,250/year (UK)",
+      description:
+        "A comprehensive program covering fundamental and advanced concepts in computing, software development, and artificial intelligence.",
+      image: "/computer-science-students.jpg",
+      link: "#",
+    },
+    {
+      name: "MBA International Business",
+      university: "University of London",
+      duration: "1 Year",
+      fees: "£25,000 (Intl)",
+      description:
+        "An intensive Master of Business Administration focusing on global markets, strategy, and leadership in an international context.",
+      image: "/business-school-students.jpg",
+      link: "#",
+    },
+    {
+      name: "MSc Data Science",
+      university: "University of Edinburgh",
+      duration: "1 Year",
+      fees: "£15,000 (UK)",
+      description:
+        "Develop expertise in data analysis, machine learning, and statistical modeling to solve complex real-world problems.",
+      image: "/data-science-analytics.jpg",
+      link: "#",
+    },
+    {
+      name: "MEng Mechanical Engineering",
+      university: "Imperial College London",
+      duration: "4 Years",
+      fees: "£9,250/year (UK)",
+      description:
+        "A rigorous engineering program focusing on design, analysis, and manufacturing of mechanical systems.",
+      image: "/mechanical-engineering.jpg",
+      link: "#",
+    },
+    {
+      name: "BA (Hons) Law",
+      university: "University of Birmingham",
+      duration: "3 Years",
+      fees: "£9,250/year (UK)",
+      description:
+        "A foundational law degree covering core legal principles, critical thinking, and legal research skills.",
+      image: "/law-school-students.jpg",
+      link: "#",
+    },
+    {
+      name: "BSc Psychology",
+      university: "University of Glasgow",
+      duration: "3 Years",
+      fees: "£9,250/year (UK)",
+      description:
+        "Explore the science of mind and behavior, covering cognitive, developmental, social, and clinical psychology.",
+      image: "/psychology-education.jpg",
+      link: "#",
+    },
+    {
+      name: "BEng Chemical Engineering",
+      university: "University of Cambridge",
+      duration: "3 Years",
+      fees: "£9,250/year (UK)",
+      description:
+        "Study the design and manufacture of chemical and pharmaceutical products with industrial applications.",
+      image: "/chemical-engineering.jpg",
+      link: "#",
+    },
+    {
+      name: "MSc Finance",
+      university: "London School of Economics",
+      duration: "1 Year",
+      fees: "£28,000 (Intl)",
+      description:
+        "Advanced program in financial markets, investment analysis, and corporate finance for aspiring finance professionals.",
+      image: "/finance-investment.png",
+      link: "#",
+    },
+    {
+      name: "BSc Nursing",
+      university: "University of Oxford",
+      duration: "3 Years",
+      fees: "£9,250/year (UK)",
+      description:
+        "Comprehensive nursing program combining clinical practice with theoretical knowledge in healthcare delivery.",
+      image: "/nursing-healthcare.jpg",
+      link: "#",
+    },
   ];
 
-  // const courses = [
-  //   {
-  //     id: 1,
-  //     title: "Business Management & Leadership",
-  //     category: "Business",
-  //     image:
-  //       "https://images.pexels.com/photos/4145190/pexels-photo-4145190.jpeg?auto=compress&cs=tinysrgb&h=400&w=600",
-  //     duration: "12 weeks",
-  //     students: 1250,
-  //     rating: 4.9,
-  //     price: "£2,499",
-  //     level: "Intermediate",
-  //     description:
-  //       "Comprehensive program covering modern business practices and leadership skills.",
-  //     features: [
-  //       "Live Sessions",
-  //       "Case Studies",
-  //       "Certification",
-  //       "Career Support",
-  //     ],
-  //   },
-  //   {
-  //     id: 2,
-  //     title: "Data Science & Analytics",
-  //     category: "Technology",
-  //     image:
-  //       "https://images.pexels.com/photos/1181263/pexels-photo-1181263.jpeg?auto=compress&cs=tinysrgb&h=400&w=600",
-  //     duration: "16 weeks",
-  //     students: 890,
-  //     rating: 4.8,
-  //     price: "£3,299",
-  //     level: "Advanced",
-  //     description:
-  //       "Master data analysis, machine learning, and statistical modeling techniques.",
-  //     features: [
-  //       "Hands-on Projects",
-  //       "Industry Tools",
-  //       "Mentorship",
-  //       "Job Placement",
-  //     ],
-  //   },
-  //   {
-  //     id: 3,
-  //     title: "Digital Marketing Mastery",
-  //     category: "Business",
-  //     image:
-  //       "https://images.pexels.com/photos/261909/pexels-photo-261909.jpeg?auto=compress&cs=tinysrgb&h=400&w=600",
-  //     duration: "10 weeks",
-  //     students: 2100,
-  //     rating: 4.7,
-  //     price: "£1,899",
-  //     level: "Beginner",
-  //     description:
-  //       "Learn modern digital marketing strategies and tools for business growth.",
-  //     features: [
-  //       "Real Campaigns",
-  //       "Analytics Tools",
-  //       "Social Media",
-  //       "SEO/SEM",
-  //     ],
-  //   },
-  //   {
-  //     id: 4,
-  //     title: "Healthcare Administration",
-  //     category: "Healthcare",
-  //     image:
-  //       "https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&h=400&w=600",
-  //     duration: "14 weeks",
-  //     students: 650,
-  //     rating: 4.9,
-  //     price: "£2,799",
-  //     level: "Intermediate",
-  //     description:
-  //       "Comprehensive training in healthcare management and administration.",
-  //     features: [
-  //       "Healthcare Systems",
-  //       "Compliance",
-  //       "Leadership",
-  //       "Quality Management",
-  //     ],
-  //   },
-  //   {
-  //     id: 5,
-  //     title: "Software Engineering Bootcamp",
-  //     category: "Technology",
-  //     image:
-  //       "https://images.pexels.com/photos/574071/pexels-photo-574071.jpeg?auto=compress&cs=tinysrgb&h=400&w=600",
-  //     duration: "20 weeks",
-  //     students: 1500,
-  //     rating: 4.8,
-  //     price: "£4,999",
-  //     level: "Beginner",
-  //     description:
-  //       "Intensive program to become a full-stack software developer.",
-  //     features: [
-  //       "Full-Stack Development",
-  //       "Portfolio Projects",
-  //       "Code Reviews",
-  //       "Job Guarantee",
-  //     ],
-  //   },
-  //   {
-  //     id: 6,
-  //     title: "Educational Leadership",
-  //     category: "Education",
-  //     image:
-  //       "https://images.pexels.com/photos/256401/pexels-photo-256401.jpeg?auto=compress&cs=tinysrgb&h=400&w=600",
-  //     duration: "12 weeks",
-  //     students: 420,
-  //     rating: 4.9,
-  //     price: "£2,299",
-  //     level: "Advanced",
-  //     description:
-  //       "Develop leadership skills for educational institutions and organizations.",
-  //     features: [
-  //       "Leadership Theory",
-  //       "Change Management",
-  //       "Policy Development",
-  //       "Research Methods",
-  //     ],
-  //   },
-  // ];
+  const coursesPerPage = 6;
+  const [searchTerm, setSearchTerm] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
 
-  const filteredCourses = courses.filter((course) => {
-    const matchesCategory =
-      selectedCategory === "All" || course.category === selectedCategory;
-    const matchesSearch =
-      course.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      course.description.toLowerCase().includes(searchTerm.toLowerCase());
-    return matchesCategory && matchesSearch;
-  });
+  const filteredCourses = allCourses.filter(
+    (course) =>
+      course.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      course.university.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  const totalPages = Math.ceil(filteredCourses.length / coursesPerPage);
+  const startIndex = (currentPage - 1) * coursesPerPage;
+  const paginatedCourses = filteredCourses.slice(
+    startIndex,
+    startIndex + coursesPerPage
+  );
+
+  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm(e.target.value);
+    setCurrentPage(1);
+  };
 
   return (
-    <div className="min-h-screen bg-white">
-      <Header />
+    <>
       {/* Hero Section */}
-      <section className="relative py-20 bg-gradient-to-br from-purple-50 to-pink-50 overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(147,51,234,0.1),transparent_50%)]"></div>
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="text-center max-w-4xl mx-auto mb-12">
-            <h1 className="text-5xl md:text-6xl font-black mb-6">
-              <span className="text-gray-900">Explore Our </span>
-              <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
-                Courses
-              </span>
-            </h1>
-            <p className="text-xl md:text-2xl text-gray-600 leading-relaxed">
-              Discover world-class programs designed to advance your career and
-              unlock new opportunities.
-            </p>
-          </div>
+      <section className="bg-gradient-to-r from-[#25215C] to-[#D04418] py-12 md:py-16">
+        <div className="container mx-auto px-6 md:px-8">
+          <Link
+            href="/"
+            className="inline-flex items-center text-white/80 hover:text-white mb-6"
+          >
+            ← Back Home
+          </Link>
+          <h1 className="text-4xl md:text-5xl font-bold text-white mb-2">
+            Explore Our Courses
+          </h1>
+          <p className="text-lg text-white/90">
+            Find the perfect academic program to match your ambitions and unlock
+            your potential
+          </p>
+        </div>
+      </section>
 
-          {/* Search and Filter */}
-          <div className="max-w-4xl mx-auto">
-            <div className="bg-white rounded-2xl p-6 shadow-lg border border-purple-100">
-              <div className="flex flex-col md:flex-row gap-4">
-                {/* Search */}
-                <div className="flex-1 relative">
-                  <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
-                  <input
-                    type="text"
-                    placeholder="Search courses..."
-                    value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
-                    className="w-full pl-12 pr-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-                  />
-                </div>
-
-                {/* Category Filter */}
-                <div className="flex items-center space-x-2">
-                  <Filter className="text-gray-400 w-5 h-5" />
-                  <select
-                    value={selectedCategory}
-                    onChange={(e) => setSelectedCategory(e.target.value)}
-                    className="px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-                  >
-                    {categories.map((category) => (
-                      <option key={category} value={category}>
-                        {category}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-              </div>
-            </div>
+      {/* Search Bar */}
+      <section className="py-12 bg-white">
+        <div className="max-w-6xl mx-auto px-6 md:px-8">
+          <div className="relative max-w-2xl mx-auto">
+            <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+            <input
+              type="text"
+              placeholder="Search courses by name or university..."
+              value={searchTerm}
+              onChange={handleSearch}
+              className="w-full pl-12 pr-6 py-4 rounded-lg border-2 border-gray-200 focus:border-[#D04418] focus:outline-none transition-colors text-gray-700 text-lg"
+            />
           </div>
         </div>
       </section>
 
       {/* Courses Grid */}
-      <section className="py-20">
-        <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredCourses.map((course) => (
-            <div
-  key={course.id}
-  className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100 overflow-hidden group flex flex-col"
->
-  <Link href={`/courses/${course.slug}`} className="flex flex-col flex-grow">
-    {/* Course Image */}
-    <div className="relative overflow-hidden">
-      <img
-        src={course.image || "/placeholder.svg"}
-        alt={course.title}
-        className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
-      />
-    </div>
-
-    {/* Course Content */}
-    <div className="p-6 flex flex-col flex-grow">
-      <div className="flex items-center justify-between mb-3">
-        <span className="text-sm font-semibold text-purple-600 bg-purple-50 px-3 py-1 rounded-full">
-          {course.category}
-        </span>
-        <div className="flex items-center space-x-1">
-          <Star className="w-4 h-4 text-yellow-500 fill-current" />
-          <span className="text-sm font-semibold text-gray-700">
-            {course.rating}
-          </span>
-        </div>
-      </div>
-
-      <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-purple-600 transition-colors">
-        {course.title}
-      </h3>
-
-      <p className="text-gray-600 mb-4 line-clamp-2 flex-grow">
-        {course.description}
-      </p>
-
-      <div className="flex items-center justify-between mb-4 text-sm text-gray-500">
-        <div className="flex items-center space-x-1">
-          <Clock className="w-4 h-4" />
-          <span>{course.duration}</span>
-        </div>
-        <div className="flex items-center space-x-1">
-          <Users className="w-4 h-4" />
-          <span>{course.students.toLocaleString()} students</span>
-        </div>
-      </div>
-
-      {/* Push button to bottom */}
-      <div className="mt-auto">
-        <Button className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-bold py-3 rounded-xl transition-all duration-300 group">
-          <span className="flex items-center justify-center">
-            Enroll Now
-            <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-          </span>
-        </Button>
-      </div>
-    </div>
-  </Link>
-</div>
-
-            ))}
-          </div>
-
-          {/* No Results */}
-          {filteredCourses.length === 0 && (
-            <div className="text-center py-16">
-              <BookOpen className="w-16 h-16 text-gray-300 mx-auto mb-4" />
-              <h3 className="text-xl font-bold text-gray-900 mb-2">
-                No courses found
-              </h3>
-              <p className="text-gray-600">
-                Try adjusting your search or filter criteria.
+      <section className="py-12 bg-white">
+        <div className="container mx-auto px-6 md:px-8">
+          {paginatedCourses.length > 0 ? (
+            <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-8">
+              {paginatedCourses.map((course, index) => (
+                <div
+                  key={index}
+                  className="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl border border-gray-200 hover:border-[#D04418] transition-all duration-300 transform hover:-translate-y-2"
+                >
+                  <img
+                    src={
+                      course.image ||
+                      "/placeholder.svg?height=150&width=250&query=university course"
+                    }
+                    alt={course.name}
+                    className="w-full h-40 object-cover"
+                  />
+                  <div className="p-6">
+                    <h3 className="text-2xl font-bold text-gray-900 mb-2">
+                      {course.name}
+                    </h3>
+                    <p className="text-gray-600 flex items-center space-x-2 mb-2">
+                      <GraduationCap className="w-5 h-5 text-[#25215C]" />
+                      <span>{course.university}</span>
+                    </p>
+                    <p className="text-gray-600 flex items-center space-x-2 mb-4">
+                      <Clock className="w-5 h-5 text-[#D04418]" />
+                      <span>{course.duration}</span>
+                      <DollarSign className="w-5 h-5 text-[#25215C] ml-4" />
+                      <span>{course.fees}</span>
+                    </p>
+                    <p className="text-gray-700 leading-relaxed mb-6 line-clamp-3">
+                      {course.description}
+                    </p>
+                    <Button className="w-full font-semibold py-3 rounded-full bg-[#25215C] text-white hover:bg-[#1A1745] transition-all">
+                      <Link
+                        href={course.link}
+                        className="flex items-center justify-center gap-2"
+                      >
+                        View Details
+                        <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                      </Link>
+                    </Button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div className="text-center py-12">
+              <p className="text-xl text-gray-600">
+                No courses found matching your search.
               </p>
+            </div>
+          )}
+
+          {totalPages > 1 && (
+            <div className="flex justify-center items-center gap-2 mt-12 pt-8 border-t border-gray-200">
+              <Button
+                onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
+                disabled={currentPage === 1}
+                className="px-4 py-2 rounded-lg border border-gray-300 text-gray-700 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+              >
+                Previous
+              </Button>
+              {Array.from({ length: totalPages }, (_, i) => i + 1).map(
+                (page) => (
+                  <button
+                    key={page}
+                    onClick={() => setCurrentPage(page)}
+                    className={`px-4 py-2 rounded-lg transition-all ${
+                      currentPage === page
+                        ? "bg-[#25215C] text-white"
+                        : "border border-gray-300 text-gray-700 hover:bg-gray-50"
+                    }`}
+                  >
+                    {page}
+                  </button>
+                )
+              )}
+              <Button
+                onClick={() =>
+                  setCurrentPage(Math.min(totalPages, currentPage + 1))
+                }
+                disabled={currentPage === totalPages}
+                className="px-4 py-2 rounded-lg border border-gray-300 text-gray-700 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+              >
+                Next
+              </Button>
             </div>
           )}
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-br from-purple-600 to-pink-600 text-white">
-        <div className="container mx-auto px-4">
-          <div className="text-center max-w-4xl mx-auto">
-            <Award className="w-16 h-16 mx-auto mb-6 opacity-90" />
-            <h2 className="text-4xl font-black mb-6">
-              Start Your Learning Journey Today
-            </h2>
-            <p className="text-xl opacity-90 mb-8">
-              Join thousands of students who have transformed their careers with
-              our expert-led courses.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button className="bg-white text-purple-600 hover:bg-gray-100 font-bold px-8 py-4 rounded-xl transition-all duration-300">
-                Get Free Consultation
-              </Button>
-              <Button className="border-2 border-white text-purple-600 bg-white hover:bg-white hover:text-purple-600 font-bold px-8 py-4 rounded-xl transition-all duration-300">
-                View All Programs
-              </Button>
-            </div>
-          </div>
+      <section className="py-16 bg-gradient-to-r from-[#25215C] to-[#D04418]">
+        <div className="container mx-auto px-6 md:px-8 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+            Need Help Choosing a Course?
+          </h2>
+          <p className="text-lg text-white/90 mb-8">
+            Our expert advisors can help you find the perfect program that
+            aligns with your career goals
+          </p>
+          <Link href="/contact">
+            <Button
+              className="bg-white text-[#25215C] font-bold px-10 py-4 rounded-lg hover:shadow-lg hover:bg-white 
+    hover:text-[#25215C]  transition-shadow"
+            >
+              Book a Free Consultation
+            </Button>
+          </Link>
         </div>
       </section>
-      <Footer />
-    </div>
+    </>
   );
 }

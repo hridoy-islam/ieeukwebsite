@@ -1,414 +1,257 @@
 "use client";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
 import {
-  Globe,
-  Users,
-  GraduationCap,
-  FileText,
-  Award,
-  BookOpen,
   CheckCircle,
-  Plane,
-  MapPin,
+  Users,
+  FileText,
+  Briefcase,
+  Award,
+  Globe,
+  BookOpen,
+  Heart,
+  Zap,
+  TrendingUp,
+  ArrowRight,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 export default function ServicesPage() {
-  const whyChooseUs = [
+  const recruits = [
     {
-      icon: <Users className="w-8 h-8" />,
-      title: "Comprehensive Student Support",
+      title: "UK Students",
       description:
-        "We are committed to providing a wide range of student services and offering many sources of support and advice on matters ranging from finance to exam worries.",
+        "Supporting domestic students throughout their academic journey",
     },
     {
-      icon: <BookOpen className="w-8 h-8" />,
-      title: "Flexible Learning Options",
+      title: "EU Students",
       description:
-        "We provide courses to fit in with your lifestyle. Whether you're in your teens or returning to education after a long gap, our staff will provide an environment that supports your learning.",
+        "Comprehensive guidance for EU citizens pursuing UK education",
     },
     {
-      icon: <Award className="w-8 h-8" />,
-      title: "Top Value for Money",
+      title: "International Students",
       description:
-        "We deliver excellent value for money in education to students from Britain and overseas through a combination of competitive advantages and quality driven tuition.",
-    },
-    {
-      icon: <MapPin className="w-8 h-8" />,
-      title: "Prime London Location",
-      description:
-        "We offer a friendly, vibrant environment right in the buzzing heart of London. The capital's rich cultural and social life is close at hand.",
+        "Expert support for Asian, Middle Eastern, and worldwide applicants",
     },
   ];
 
-  const internationalServices = [
-    {
-      title: "University Admission Applications",
-      description:
-        "We process university admission applications through our expert admission consultants to top universities in the UK, USA, Canada, Australia, Sweden, and other European countries.",
-      features: [
-        "Expert admission consultants",
-        "Top universities in the UK, USA, Canada, Australia",
-        "Coverage of European countries",
-        "Almost 100% success rate",
-      ],
-      icon: <GraduationCap className="w-8 h-8" />,
-    },
-    {
-      title: "Study Abroad Guidance",
-      description:
-        "We provide guidelines and essential information to international students who want to study abroad and assist them in gaining admission to their dream universities or colleges.",
-      features: [
-        "Comprehensive study abroad guidance",
-        "Dream university admission support",
-        "International student consultation",
-        "Personalised education planning",
-      ],
-      icon: <Globe className="w-8 h-8" />,
-    },
-    {
-      title: "Student Recruitment",
-      description:
-        "We work with universities to recruit highly talented students from all over the world.",
-      features: [
-        "Global student recruitment",
-        "Talent identification and selection",
-        "University partnership programs",
-        "Promotion of cultural diversity",
-      ],
-      icon: <Users className="w-8 h-8" />,
-    },
-    {
-      title: "Visa Application Processing",
-      description:
-        "We process visa applications on behalf of international students, handled by our experienced visa consultants in accordance with the immigration requirements of respective countries.",
-      features: [
-        "Experienced visa consultants",
-        "Country-specific immigration requirements",
-        "High success rate for visa applications",
-        "Complete application support",
-      ],
-      icon: <Plane className="w-8 h-8" />,
-    },
+  const helps = [
+    "Applications",
+    "Student Finance Applications",
+    "Scholarships",
+    "Interviews",
+    "Student Counselling",
   ];
 
-  const ukEuServices = [
+  const courseTypes = [
+    "Bachelor Degrees",
+    "Master Degrees",
+    "Foundation Diploma Courses",
+    "Higher National Diploma",
+    "Higher National Certificate",
+  ];
+
+  const courses = [
+    "Business Management",
+    "Law",
+    "Health & Social Care",
+    "ICT",
+    "Hospitality Management",
+    "Project Management",
+    "Finance and Accounting",
+    "And many more",
+  ];
+
+  const services = [
     {
-      title: "Free Admission Assessment",
+      icon: Users,
+      title: "Expert Admission Consultants",
       description:
-        "We conduct admission assessments and manage the application process for your chosen college or university courses free of charge.",
-      features: [
-        "Completely free service",
-        "Comprehensive admission assessment",
-        "University application support",
-        "Course selection guidance",
-      ],
-      icon: <FileText className="w-8 h-8" />,
+        "Our experienced team processes university applications with a 100% success rate to top UK institutions",
     },
     {
-      title: "CV & Personal Statement Training",
+      icon: FileText,
+      title: "Application Processing",
       description:
-        "We provide training sessions to help you build an academic and professional CV, and write a personal statement that reflects your thoughts and motivations.",
-      features: [
-        "Academic CV development",
-        "Professional CV building",
-        "Personal statement writing",
-        "Individual consultation sessions",
-      ],
-      icon: <Award className="w-8 h-8" />,
+        "Complete support for UCAS applications and university-specific requirements",
     },
     {
+      icon: BookOpen,
+      title: "Personal Statement Editing",
+      description:
+        "Professional guidance to craft compelling personal statements",
+    },
+    {
+      icon: Award,
       title: "Interview Preparation",
-      description:
-        "We prepare students for admission interviews through mock sessions and targeted training before the actual interview.",
-      features: [
-        "Mock interview sessions",
-        "Interview technique training",
-        "Confidence building exercises",
-        "Personalized feedback",
-      ],
-      icon: <Users className="w-8 h-8" />,
+      description: "Comprehensive interview coaching and mock sessions",
     },
     {
-      title: "Free English Courses",
+      icon: Heart,
+      title: "Visa Assistance",
       description:
-        "For EU and local students, we offer free English courses in London to help improve language proficiency for those whose first language is not English.",
-      features: [
-        "Completely free English courses",
-        "London-based classes",
-        "Language efficiency improvement",
-        "Pathway to higher education",
-      ],
-      icon: <BookOpen className="w-8 h-8" />,
+        "Expert visa consultation following immigration requirements",
+    },
+    {
+      icon: TrendingUp,
+      title: "Career Guidance",
+      description: "Career counselling to secure the right job opportunities",
     },
   ];
 
   return (
     <div className="min-h-screen bg-white">
-      <Header />
+      {/* Hero Section */}
+      <section className="bg-gradient-to-r from-[#25215C] to-[#D04418] py-12 md:py-16">
+        <div className="container mx-auto px-6 md:px-8">
+          <Link
+            href="/"
+            className="inline-flex items-center text-white/80 hover:text-white mb-6"
+          >
+            ← Back Home
+          </Link>
+          <h1 className="text-4xl md:text-5xl font-bold text-white mb-2">
+            Our Services
+          </h1>
+          <p className="text-lg text-white/90">
+            Comprehensive support for your educational journey in the UK
+          </p>
+        </div>
+      </section>
 
       {/* Hero Section */}
-      <section className="relative py-20 bg-gradient-to-br from-purple-50 to-pink-50 overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(147,51,234,0.1),transparent_50%)]"></div>
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="text-center max-w-4xl mx-auto">
-            <h1 className="text-5xl md:text-6xl font-black mb-6">
-              <span className="text-gray-900">Our </span>
-              <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
-                Services
-              </span>
-            </h1>
-            <p className="text-xl md:text-2xl text-gray-600 leading-relaxed">
-              Comprehensive educational services designed to support your
-              academic journey from application to graduation.
-            </p>
+
+      {/* We Recruit Section */}
+      <section className="py-20 md:py-24 bg-white">
+        <div className="container mx-auto px-6 md:px-8">
+          <h2 className="text-4xl md:text-5xl font-bold text-[#25215C] text-center mb-16">
+            We Recruit
+          </h2>
+          <div className="grid md:grid-cols-3 gap-8">
+            {recruits.map((item, idx) => (
+              <div
+                key={idx}
+                className="group p-8 rounded-2xl bg-gradient-to-br from-gray-50 to-white border-2 border-[#D04418]/20 hover:border-[#D04418] transition-all duration-300 hover:shadow-lg"
+              >
+                <div className="w-12 h-12 bg-gradient-to-br from-[#D04418] to-[#25215C] rounded-xl mb-4 flex items-center justify-center group-hover:scale-110 transition-transform">
+                  <Users className="w-6 h-6 text-white" />
+                </div>
+                <h3 className="text-2xl font-bold text-[#25215C] mb-3">
+                  {item.title}
+                </h3>
+                <p className="text-gray-700">{item.description}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Why Choose Omniscient */}
-      <section className="py-20">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-black mb-6">
-              <span className="text-gray-900">Why Choose </span>
-              <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
-                Omniscient?
-              </span>
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              There are so many reasons, that it's only possible to list the
-              most important here:
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-8">
-            {whyChooseUs.map((reason, index) => (
+      {/* Help With Section */}
+      <section className="py-20 md:py-24 bg-gray-50">
+        <div className="container mx-auto px-6 md:px-8">
+          <h2 className="text-4xl md:text-5xl font-bold text-[#25215C] text-center mb-16">
+            We Help Our Students With
+          </h2>
+          <div className="grid md:grid-cols-5 gap-6">
+            {helps.map((item, idx) => (
               <div
-                key={index}
-                className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 group"
+                key={idx}
+                className="p-6 rounded-xl bg-white border-2 border-[#D04418]/20 hover:border-[#D04418] hover:shadow-lg transition-all duration-300 group text-center"
               >
-                <div className="w-16 h-16 bg-gradient-to-r from-purple-100 to-pink-100 rounded-2xl flex items-center justify-center mb-6 text-purple-600 group-hover:scale-110 transition-transform">
-                  {reason.icon}
-                </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-4">
-                  {reason.title}
-                </h3>
-                <p className="text-gray-600 leading-relaxed">
-                  {reason.description}
+                <CheckCircle className="w-8 h-8 text-[#D04418] mx-auto mb-3 group-hover:scale-110 transition-transform" />
+                <p className="font-bold text-[#25215C]">{item}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Course Types Section */}
+      <section className="py-20 md:py-24 bg-white">
+        <div className="container mx-auto px-6 md:px-8">
+          <h2 className="text-4xl md:text-5xl font-bold text-[#25215C] text-center mb-16">
+            Types of Courses We Assist
+          </h2>
+          <div className="grid md:grid-cols-5 gap-6">
+            {courseTypes.map((course, idx) => (
+              <div
+                key={idx}
+                className="p-6 rounded-xl bg-gradient-to-br from-[#25215C]/5 to-[#D04418]/5 border-2 border-[#25215C]/20 hover:border-[#D04418] hover:shadow-lg transition-all duration-300 group"
+              >
+                <BookOpen className="w-6 h-6 text-[#D04418] mb-3 group-hover:scale-110 transition-transform" />
+                <p className="font-bold text-[#25215C] text-sm">{course}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Courses We Mainly Assist */}
+      <section className="py-20 md:py-24 bg-gray-50">
+        <div className="container mx-auto px-6 md:px-8">
+          <h2 className="text-4xl md:text-5xl font-bold text-[#25215C] text-center mb-16">
+            Courses We Mainly Assist With
+          </h2>
+          <div className="grid md:grid-cols-4 gap-6">
+            {courses.map((course, idx) => (
+              <div
+                key={idx}
+                className="p-6 rounded-xl bg-white border-2 border-[#D04418]/20 hover:border-[#D04418] hover:bg-[#D04418]/5 transition-all duration-300 group text-center"
+              >
+                <Zap className="w-6 h-6 text-[#D04418] mx-auto mb-3 opacity-0 group-hover:opacity-100 transition-opacity" />
+                <p className="font-bold text-[#25215C] group-hover:text-[#D04418] transition-colors">
+                  {course}
                 </p>
               </div>
             ))}
           </div>
-
-          <div className="mt-12 bg-gradient-to-br from-purple-100 to-pink-100 rounded-3xl p-8 text-center">
-            <h3 className="text-2xl font-black text-gray-900 mb-4">
-              Additional Benefits
-            </h3>
-            <div className="grid md:grid-cols-2 gap-6 text-left">
-              <div className="space-y-3">
-                <div className="flex items-center space-x-3">
-                  <CheckCircle className="w-5 h-5 text-purple-600" />
-                  <span className="text-gray-700">
-                    Dedicated academic advisers for undergraduate, postgraduate,
-                    and mature students
-                  </span>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <CheckCircle className="w-5 h-5 text-purple-600" />
-                  <span className="text-gray-700">
-                    Career guidance and job placement assistance
-                  </span>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <CheckCircle className="w-5 h-5 text-purple-600" />
-                  <span className="text-gray-700">
-                    Support with student finance applications
-                  </span>
-                </div>
-              </div>
-              <div className="space-y-3">
-                <div className="flex items-center space-x-3">
-                  <CheckCircle className="w-5 h-5 text-pink-600" />
-                  <span className="text-gray-700">
-                    International environment with a cosmopolitan character
-                  </span>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <CheckCircle className="w-5 h-5 text-pink-600" />
-                  <span className="text-gray-700">
-                    Challenging, rewarding, and exciting student experience
-                  </span>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <CheckCircle className="w-5 h-5 text-pink-600" />
-                  <span className="text-gray-700">
-                    Approachable and highly supportive staff
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
       </section>
 
-      {/* International Students Services */}
-      <section className="py-20 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-black mb-6">
-              <span className="text-gray-900">For </span>
-              <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
-                International Students
-              </span>
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Comprehensive support services designed specifically for
-              international students pursuing education abroad.
-            </p>
-          </div>
-
-          <div className="grid lg:grid-cols-2 gap-8">
-            {internationalServices.map((service, index) => (
+      {/* Services Grid */}
+      <section className="py-20 md:py-24 bg-white">
+        <div className="container mx-auto px-6 md:px-8">
+          <h2 className="text-4xl md:text-5xl font-bold text-[#25215C] text-center mb-16">
+            Our Key Services
+          </h2>
+          <div className="grid md:grid-cols-3 gap-8">
+            {services.map((service, idx) => (
               <div
-                key={index}
-                className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2"
+                key={idx}
+                className="group p-8 rounded-2xl bg-gradient-to-br from-white to-gray-50 border-2 border-gray-200 hover:border-[#D04418] hover:shadow-xl transition-all duration-300"
               >
-                <div className="w-16 h-16 bg-gradient-to-r from-purple-100 to-pink-100 rounded-2xl flex items-center justify-center mb-6 text-purple-600">
-                  {service.icon}
+                <div className="w-14 h-14 bg-gradient-to-br from-[#25215C] to-[#D04418] rounded-xl mb-6 flex items-center justify-center group-hover:scale-110 transition-transform">
+                  <service.icon className="w-7 h-7 text-white" />
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-4">
+                <h3 className="text-xl font-bold text-[#25215C] mb-3">
                   {service.title}
                 </h3>
-                <p className="text-gray-600 leading-relaxed mb-6">
-                  {service.description}
-                </p>
-                <div className="space-y-2">
-                  {service.features.map((feature, featureIndex) => (
-                    <div
-                      key={featureIndex}
-                      className="flex items-center space-x-3"
-                    >
-                      <CheckCircle className="w-4 h-4 text-purple-600" />
-                      <span className="text-sm text-gray-700">{feature}</span>
-                    </div>
-                  ))}
-                </div>
+                <p className="text-gray-700">{service.description}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* UK/EU Students Services */}
-      <section className="py-20">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-black mb-6">
-              <span className="text-gray-900">For </span>
-              <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
-                UK/EU Students
-              </span>
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Specialised services for UK and EU students seeking higher
-              education opportunities and career development.
-            </p>
-          </div>
-
-          <div className="grid lg:grid-cols-2 gap-8">
-            {ukEuServices.map((service, index) => (
-              <div
-                key={index}
-                className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2"
-              >
-                <div className="w-16 h-16 bg-gradient-to-r from-pink-100 to-purple-100 rounded-2xl flex items-center justify-center mb-6 text-pink-600">
-                  {service.icon}
-                </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-4">
-                  {service.title}
-                </h3>
-                <p className="text-gray-600 leading-relaxed mb-6">
-                  {service.description}
-                </p>
-                <div className="space-y-2">
-                  {service.features.map((feature, featureIndex) => (
-                    <div
-                      key={featureIndex}
-                      className="flex items-center space-x-3"
-                    >
-                      <CheckCircle className="w-4 h-4 text-pink-600" />
-                      <span className="text-sm text-gray-700">{feature}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <div className="mt-12 bg-gradient-to-br from-pink-100 to-purple-100 rounded-3xl p-8 text-center">
-            <h3 className="text-2xl font-black text-gray-900 mb-4">
-              Additional UK/EU Support
-            </h3>
-            <div className="grid md:grid-cols-2 gap-6 text-left">
-              <div className="space-y-3">
-                <div className="flex items-center space-x-3">
-                  <CheckCircle className="w-5 h-5 text-pink-600" />
-                  <span className="text-gray-700">
-                    Student finance application assistance
-                  </span>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <CheckCircle className="w-5 h-5 text-pink-600" />
-                  <span className="text-gray-700">
-                    EU student transition support to UK education
-                  </span>
-                </div>
-              </div>
-              <div className="space-y-3">
-                <div className="flex items-center space-x-3">
-                  <CheckCircle className="w-5 h-5 text-purple-600" />
-                  <span className="text-gray-700">
-                    Higher education pathway planning
-                  </span>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <CheckCircle className="w-5 h-5 text-purple-600" />
-                  <span className="text-gray-700">
-                    Language support for non-native English speakers
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
+      <section className="py-16 bg-gradient-to-r from-[#25215C] to-[#D04418]">
+        <div className="container mx-auto px-6 md:px-8 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+            Ready to Explore Our Services?
+          </h2>
+          <p className="text-lg text-white/90 mb-8">
+            Get in touch with our consultants to start your educational journey
+          </p>
+          <Link href="/contact">
+            <Button
+              className="bg-white text-[#25215C] font-bold px-10 py-4 rounded-lg hover:shadow-lg hover:bg-white 
+    hover:text-[#25215C]  transition-shadow"
+            >
+              Get Expert Guidance
+            </Button>
+          </Link>
         </div>
       </section>
-
-      {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-br from-purple-600 to-pink-600 text-white">
-        <div className="container mx-auto px-4">
-          <div className="text-center max-w-4xl mx-auto">
-            <h2 className="text-4xl font-black mb-6">
-              Ready to Start Your Educational Journey?
-            </h2>
-            <p className="text-xl opacity-90 mb-8">
-              Contact us for a free consultation and let our expert team guide
-              you towards your academic goals.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button className="bg-white text-purple-600 hover:bg-gray-100 font-bold px-8 py-4 rounded-xl transition-all duration-300">
-                Get Free Consultation
-              </Button>
-              <Button className="bg-white text-purple-600 border-2 border-white hover:bg-white hover:text-purple-600 font-bold px-8 py-4 rounded-xl transition-all duration-300">
-                Apply Now
-              </Button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <Footer />
     </div>
   );
 }

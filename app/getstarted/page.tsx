@@ -1,471 +1,356 @@
 "use client";
-import BreadCumb from "@/components/BreadCumb";
-import type React from "react";
-
-import Header from "@/components/Header";
-import HeaderTop from "@/components/HeaderTop";
-import Footer from "@/components/Footer";
-import { Button } from "@/components/ui/button";
 import { useState } from "react";
+import type React from "react";
 import {
+  Send,
   CheckCircle,
-  BookOpen,
-  GraduationCap,
+  Share2,
   Mail,
-  Phone,
-  MessageSquare,
-  Calendar,
-  ArrowRight,
-  Lightbulb,
-  Briefcase,
-  Award,
-  Handshake,
-  MailCheck,
+  Facebook,
+  Twitter,
 } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
-export default function AdmissionsPage() {
-  const [isLoading, setIsLoading] = useState(false);
-  const [isSubmitted, setIsSubmitted] = useState(false);
+export default function GetStartedPage() {
   const [formData, setFormData] = useState({
-    name: "",
+    fullName: "",
     email: "",
     phone: "",
     country: "",
-    programOfInterest: "",
-    message: "",
+    subject: "",
+    intake: "",
   });
-
-  const handleInputChange = (
-    e: React.ChangeEvent<
-      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >
-  ) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
 
-    try {
-      // Simulate API call for inquiry submission
-      await new Promise((resolve) => setTimeout(resolve, 2000));
-      setIsSubmitted(true);
-    } catch (error) {
-      console.error("Error submitting form:", error);
-    } finally {
-      setIsLoading(false);
-    }
+    // Simulate form submission
+    await new Promise((resolve) => setTimeout(resolve, 2000));
+
+    console.log("Form Data:", formData);
+    setIsSubmitted(true);
+    setIsLoading(false);
+
+    setTimeout(() => setIsSubmitted(false), 5000);
+    setFormData({
+      fullName: "",
+      email: "",
+      phone: "",
+      country: "",
+      subject: "",
+      intake: "",
+    });
   };
 
-  const steps = [
-    {
-      icon: <BookOpen className="w-6 h-6 text-pink-600" />,
-      title: "Explore Programs",
-      description:
-        "Discover our wide range of undergraduate and postgraduate courses.",
-    },
-    {
-      icon: <GraduationCap className="w-6 h-6 text-rose-600" />,
-      title: "Check Requirements",
-      description:
-        "Review the academic and English language entry criteria for your chosen program.",
-    },
-    {
-      icon: <Mail className="w-6 h-6 text-purple-600" />,
-      title: "Submit Application",
-      description:
-        "Complete our online application form and upload all required documents.",
-    },
-    {
-      icon: <CheckCircle className="w-6 h-6 text-pink-600" />,
-      title: "Receive Offer",
-      description:
-        "Get your admission offer and guidance on accepting your place.",
-    },
-  ];
+  const handleChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+    >
+  ) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
 
-  const benefits = [
-    "World-class faculty and research opportunities",
-    "Vibrant campus life and student support services",
-    "Global alumni network and career placement assistance",
-    "State-of-the-art facilities and learning resources",
-    "Flexible study options and diverse program offerings",
-    "Scholarship and financial aid opportunities",
+  const countries = ["USA", "UK", "Canada", "Australia", "Germany", "UAE"];
+  const intakes = [
+    "January 2024",
+    "February 2024",
+    "March 2024",
+    "April 2024",
+    "May 2024",
+    "June 2024",
+    "July 2024",
+    "August 2024",
+    "September 2024",
+    "October 2024",
+    "November 2024",
+    "December 2024",
   ];
 
   return (
-    <div className="min-h-screen bg-white">
-      <Header />
+    <main className="bg-white">
+      {/* Header Section */}
+      <section className="bg-gradient-to-r from-[#25215C] to-[#D04418] py-16 md:py-20">
+        <div className="container mx-auto px-6 md:px-8">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-8">
+            <div>
+              <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
+                Get Started
+              </h1>
+              <p className="text-lg text-white/90">
+                Begin your journey to international education with IEE
+              </p>
+            </div>
 
-      <section className="relative py-20 bg-gradient-to-br from-purple-50 to-pink-50 overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(147,51,234,0.1),transparent_50%)]"></div>
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="text-center max-w-4xl mx-auto">
-            <Handshake className="w-16 h-16 text-purple-600 mx-auto mb-6" />
-            <h1 className="text-5xl md:text-6xl font-black mb-6">
-              <span className="text-gray-900">Admissions </span>
-              <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
-                Guide
-              </span>
-            </h1>
-            <p className="text-xl md:text-2xl text-gray-600 leading-relaxed">
-              Your step-by-step guide to joining Omniscient Education. Start
-              your journey towards academic excellence today.
-            </p>
+            {/* Social Share */}
+            <div className="flex items-center gap-4">
+              <span className="text-white/80 text-sm font-medium">Share:</span>
+              <div className="flex gap-3">
+                <Link
+                  href="#"
+                  className="w-10 h-10 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center transition-colors"
+                >
+                  <Facebook className="w-5 h-5 text-white" />
+                </Link>
+                <Link
+                  href="#"
+                  className="w-10 h-10 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center transition-colors"
+                >
+                  <Twitter className="w-5 h-5 text-white" />
+                </Link>
+                <Link
+                  href="#"
+                  className="w-10 h-10 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center transition-colors"
+                >
+                  <Mail className="w-5 h-5 text-white" />
+                </Link>
+                <Link
+                  href="#"
+                  className="w-10 h-10 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center transition-colors"
+                >
+                  <Share2 className="w-5 h-5 text-white" />
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Success Message */}
-      {isSubmitted && (
-        <section className="py-12 bg-green-50">
-          <div className="container mx-auto px-4">
-            <div className="max-w-2xl mx-auto text-center">
-              <div className="glass-white rounded-3xl p-8 shadow-blue-lg border border-green-200">
-                <CheckCircle className="w-16 h-16 text-green-600 mx-auto mb-6" />
-                <h3 className="text-3xl font-bold text-green-600 mb-4">
-                  Inquiry Submitted Successfully!
-                </h3>
-                <p className="text-gray-600 text-lg leading-relaxed mb-6">
-                  Thank you for your interest. Our admissions team will review
-                  your inquiry and get back to you shortly with more
-                  information.
-                </p>
-                <div className="flex items-center justify-center space-x-6">
-                  <div className="flex items-center space-x-2 text-green-600">
-                    <Mail className="w-5 h-5" />
-                    <span className="font-medium">Confirmation Email Sent</span>
-                  </div>
-                  <div className="flex items-center space-x-2 text-purple-600">
-                    <Calendar className="w-5 h-5" />
-                    <span className="font-medium">Schedule a Call</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-      )}
-
       {/* Main Content */}
-      <section className="section-padding bg-white">
-        <div className="container mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-16">
-            {/* Left Column - Information */}
-            <div className="space-y-8">
-              <div>
-                <div className="inline-flex items-center justify-center mb-6">
-                  <div className="flex items-center space-x-3 glass-blue rounded-full px-6 py-3 shadow-blue">
-                    <GraduationCap className="w-5 h-5 text-pink-600" />
-                    <span className="text-pink-600 font-bold">
-                      Admissions Process
-                    </span>
-                  </div>
-                </div>
-
-                <h2 className="text-4xl md:text-5xl font-black text-gray-900 mb-6 leading-tight">
-                  Your Path to{" "}
-                  <span className="text-gradient">Global Education</span> Starts
-                  Here
-                </h2>
-
-                <p className="text-xl text-gray-600 leading-relaxed mb-8">
-                  We're excited to help you begin your academic journey. Follow
-                  these simple steps to apply and join our diverse community of
-                  learners.
-                </p>
-              </div>
-
-              {/* Steps Grid */}
-              <div className="grid md:grid-cols-2 gap-6">
-                {steps.map((step, index) => (
-                  <div
-                    key={index}
-                    className="glass-white rounded-2xl p-6 shadow-blue border border-gray-100 hover:border-pink-200 transition-all duration-300 card-hover"
-                  >
-                    <div className="flex items-start space-x-4">
-                      <div className="w-12 h-12 bg-pink-50 rounded-2xl flex items-center justify-center flex-shrink-0">
-                        {step.icon}
-                      </div>
-                      <div>
-                        <h3 className="text-lg font-bold text-gray-900 mb-2">
-                          {step.title}
-                        </h3>
-                        <p className="text-gray-600 text-sm leading-relaxed">
-                          {step.description}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              {/* Benefits List */}
-              <div className="glass-blue rounded-3xl p-8 shadow-blue">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6 flex items-center">
-                  <Award className="w-6 h-6 text-pink-600 mr-3" />
-                  Why Choose Omniscient Education?
-                </h3>
-                <div className="grid md:grid-cols-2 gap-3">
-                  {benefits.map((benefit, index) => (
-                    <div key={index} className="flex items-center space-x-3">
-                      <div className="w-5 h-5 bg-gradient-to-r from-pink-500 to-rose-500 rounded-full flex items-center justify-center flex-shrink-0">
-                        <CheckCircle className="w-3 h-3 text-white" />
-                      </div>
-                      <span className="text-gray-700 font-medium text-sm">
-                        {benefit}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Quick Links */}
-              <div className="grid grid-cols-2 gap-6">
-                <Button className="btn-outline-gradient text-gray-700 hover:text-pink-600 font-bold px-8 py-4 rounded-xl bg-white hover:bg-pink-50 transition-all duration-200">
-                  <Lightbulb className="w-5 h-5 mr-2" />
-                  Explore Scholarships
-                </Button>
-                <Button className="btn-outline-gradient text-gray-700 hover:text-pink-600 font-bold px-8 py-4 rounded-xl bg-white hover:bg-pink-50 transition-all duration-200">
-                  <Briefcase className="w-5 h-5 mr-2" />
-                  Career Services
-                </Button>
-              </div>
+      <section className="py-16 md:py-24 bg-gray-50">
+        <div className="max-w-4xl mx-auto px-6 md:px-8">
+          {/* Consultation Section */}
+          <div className="bg-white rounded-2xl shadow-lg p-8 md:p-12 mb-12">
+            <div className="mb-8">
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                Book Your Free Consultation
+              </h2>
+              <p className="text-gray-600 text-lg leading-relaxed">
+                Choosing to study in a foreign country is an important decision,
+                and we are aware that you will probably have many questions
+                before you come to your desired colleges and universities. If
+                you cannot find the answer to your question on our website or
+                wish to get further information, please feel free to contact us
+                using the phone number on the right or through the form below.
+                We will try and answer your query as early as possible.
+              </p>
             </div>
 
-            {/* Right Column - Inquiry Form */}
-            <div className="glass-white rounded-3xl p-8 shadow-blue-lg border border-gray-100">
-              <div className="text-center mb-8">
-                <div className="w-16 h-16 bg-gradient-to-r from-pink-500 to-rose-500 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                  <Mail className="w-8 h-8 text-white" />
+            {isSubmitted ? (
+              <div className="text-center py-12 bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl">
+                <div className="inline-flex items-center justify-center w-16 h-16 bg-green-100 rounded-full mb-4">
+                  <CheckCircle className="w-8 h-8 text-green-600" />
                 </div>
                 <h3 className="text-2xl font-bold text-gray-900 mb-2">
-                  Submit Your Inquiry
+                  Enquiry Received!
                 </h3>
-                <p className="text-gray-600">
-                  Fill out the form below and our team will contact you shortly.
+                <p className="text-gray-600 mb-4">
+                  Thank you for reaching out. We'll contact you shortly to
+                  discuss your educational goals.
                 </p>
+                <Button
+                  onClick={() => setIsSubmitted(false)}
+                  className="bg-gradient-to-r from-[#25215C] to-[#D04418] text-white"
+                >
+                  Submit Another Enquiry
+                </Button>
               </div>
-
+            ) : (
               <form onSubmit={handleSubmit} className="space-y-6">
-                {/* Name Field */}
+                {/* Full Name */}
                 <div>
                   <label
-                    htmlFor="name"
-                    className="block text-gray-900 font-medium mb-2"
+                    htmlFor="fullName"
+                    className="block text-sm font-semibold text-gray-900 mb-2"
                   >
-                    Full Name *
+                    Full Name: <span className="text-[#D04418]">*</span>
                   </label>
                   <input
                     type="text"
-                    id="name"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleInputChange}
-                    className="w-full px-4 py-4 bg-white border border-gray-200 rounded-2xl text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent transition-all"
-                    placeholder="Enter your full name"
+                    id="fullName"
+                    name="fullName"
                     required
+                    value={formData.fullName}
+                    onChange={handleChange}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#25215C] focus:border-transparent"
+                    placeholder="Enter your full name"
                   />
                 </div>
 
-                {/* Email and Phone Row */}
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div>
-                    <label
-                      htmlFor="email"
-                      className="block text-gray-900 font-medium mb-2"
-                    >
-                      Email Address *
-                    </label>
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      value={formData.email}
-                      onChange={handleInputChange}
-                      className="w-full px-4 py-4 bg-white border border-gray-200 rounded-2xl text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent transition-all"
-                      placeholder="your@email.com"
-                      required
-                    />
-                  </div>
-
-                  <div>
-                    <label
-                      htmlFor="phone"
-                      className="block text-gray-900 font-medium mb-2"
-                    >
-                      Phone Number
-                    </label>
-                    <input
-                      type="tel"
-                      id="phone"
-                      name="phone"
-                      value={formData.phone}
-                      onChange={handleInputChange}
-                      className="w-full px-4 py-4 bg-white border border-gray-200 rounded-2xl text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent transition-all"
-                      placeholder="+1 (555) 123-4567 (Optional)"
-                    />
-                  </div>
-                </div>
-
-                {/* Country and Program of Interest */}
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div>
-                    <label
-                      htmlFor="country"
-                      className="block text-gray-900 font-medium mb-2"
-                    >
-                      Country of Residence *
-                    </label>
-                    <input
-                      type="text"
-                      id="country"
-                      name="country"
-                      value={formData.country}
-                      onChange={handleInputChange}
-                      className="w-full px-4 py-4 bg-white border border-gray-200 rounded-2xl text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent transition-all"
-                      placeholder="Your country"
-                      required
-                    />
-                  </div>
-
-                  <div>
-                    <label
-                      htmlFor="programOfInterest"
-                      className="block text-gray-900 font-medium mb-2"
-                    >
-                      Program of Interest *
-                    </label>
-                    <select
-                      id="programOfInterest"
-                      name="programOfInterest"
-                      value={formData.programOfInterest}
-                      onChange={handleInputChange}
-                      className="w-full px-4 py-4 bg-white border border-gray-200 rounded-2xl text-gray-900 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent transition-all"
-                      required
-                    >
-                      <option value="">Select a program</option>
-                      <option value="undergraduate">
-                        Undergraduate Programs
-                      </option>
-                      <option value="postgraduate">
-                        Postgraduate Programs
-                      </option>
-                      <option value="diploma">Diploma Programs</option>
-                      <option value="certification">
-                        Professional Certifications
-                      </option>
-                      <option value="other">Other</option>
-                    </select>
-                  </div>
-                </div>
-
-                {/* Message Field */}
+                {/* Email Address */}
                 <div>
                   <label
-                    htmlFor="message"
-                    className="block text-gray-900 font-medium mb-2"
+                    htmlFor="email"
+                    className="block text-sm font-semibold text-gray-900 mb-2"
                   >
-                    Your Message / Questions *
+                    Email Address: <span className="text-[#D04418]">*</span>
                   </label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    value={formData.message}
-                    onChange={handleInputChange}
-                    rows={4}
-                    className="w-full px-4 py-4 bg-white border border-gray-200 rounded-2xl text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent transition-all resize-none"
-                    placeholder="Tell us about your academic goals, questions, or specific interests..."
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
                     required
-                  ></textarea>
+                    value={formData.email}
+                    onChange={handleChange}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#25215C] focus:border-transparent"
+                    placeholder="your@email.com"
+                  />
                 </div>
 
-                {/* Consent Checkbox */}
-                <div className="flex items-start space-x-3">
-                  <input
-                    type="checkbox"
-                    id="consent"
-                    className="mt-1 w-5 h-5 text-pink-600 border-gray-300 rounded focus:ring-pink-500"
-                    required
-                  />
+                {/* Phone Number */}
+                <div>
                   <label
-                    htmlFor="consent"
-                    className="text-gray-600 text-sm leading-relaxed"
+                    htmlFor="phone"
+                    className="block text-sm font-semibold text-gray-900 mb-2"
                   >
-                    I agree to receive communications from Omniscient Education
-                    regarding my inquiry, program updates, and relevant
-                    information. I understand I can unsubscribe at any time.
+                    Phone Number: <span className="text-[#D04418]">*</span>
                   </label>
+                  <input
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    required
+                    value={formData.phone}
+                    onChange={handleChange}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#25215C] focus:border-transparent"
+                    placeholder="+44 (0)xxx xxx xxxx"
+                  />
+                </div>
+
+                {/* Country Selection */}
+                <div>
+                  <label
+                    htmlFor="country"
+                    className="block text-sm font-semibold text-gray-900 mb-2"
+                  >
+                    Select The Country You Want To Study:{" "}
+                    <span className="text-[#D04418]">*</span>
+                  </label>
+                  <select
+                    id="country"
+                    name="country"
+                    required
+                    value={formData.country}
+                    onChange={handleChange}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#25215C] focus:border-transparent"
+                  >
+                    <option value="">Please select</option>
+                    {countries.map((country) => (
+                      <option key={country} value={country}>
+                        {country}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                {/* Subject Name */}
+                <div>
+                  <label
+                    htmlFor="subject"
+                    className="block text-sm font-semibold text-gray-900 mb-2"
+                  >
+                    Subject Name: <span className="text-[#D04418]">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    id="subject"
+                    name="subject"
+                    required
+                    value={formData.subject}
+                    onChange={handleChange}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#25215C] focus:border-transparent"
+                    placeholder="e.g., Business Administration, Computer Science"
+                  />
+                </div>
+
+                {/* Intake Selection */}
+                <div>
+                  <label
+                    htmlFor="intake"
+                    className="block text-sm font-semibold text-gray-900 mb-2"
+                  >
+                    Intake: <span className="text-[#D04418]">*</span>
+                  </label>
+                  <select
+                    id="intake"
+                    name="intake"
+                    required
+                    value={formData.intake}
+                    onChange={handleChange}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#25215C] focus:border-transparent"
+                  >
+                    <option value="">Please select</option>
+                    {intakes.map((intake) => (
+                      <option key={intake} value={intake}>
+                        {intake}
+                      </option>
+                    ))}
+                  </select>
                 </div>
 
                 {/* Submit Button */}
-                <Button
-                  type="submit"
-                  disabled={isLoading || isSubmitted}
-                  className="w-full bg-gradient-to-r from-pink-500 via-rose-500 to-pink-600 text-white font-bold py-6 rounded-2xl text-lg shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 group disabled:opacity-50 disabled:cursor-not-allowed"
-                >
-                  {isLoading ? (
-                    <div className="flex items-center justify-center">
-                      <div className="w-6 h-6 border-2 border-white border-t-transparent rounded-full animate-spin mr-3"></div>
-                      Submitting Inquiry...
-                    </div>
-                  ) : isSubmitted ? (
-                    <div className="flex items-center justify-center">
-                      <CheckCircle className="w-6 h-6 mr-3" />
-                      Inquiry Sent!
-                    </div>
-                  ) : (
-                    <div className="flex items-center justify-center">
-                      <ArrowRight className="w-6 h-6 mr-3 group-hover:translate-x-1 transition-transform" />
-                      Submit Inquiry
-                    </div>
-                  )}
-                </Button>
-
-                {/* Security Notice */}
-                <div className="text-center pt-4">
-                  <p className="text-gray-500 text-sm leading-relaxed">
-                    🔒 Your information is secure and encrypted. We respect your
-                    privacy and will never share your data with third parties.
-                  </p>
+                <div className="pt-4">
+                  <Button
+                    type="submit"
+                    disabled={isLoading}
+                    className="w-full bg-gradient-to-r from-[#25215C] to-[#D04418] text-white font-bold py-4 rounded-lg hover:shadow-lg transition-shadow disabled:opacity-50 flex items-center justify-center gap-2"
+                  >
+                    <Send className="w-5 h-5" />
+                    {isLoading ? "Sending..." : "Send"}
+                  </Button>
                 </div>
               </form>
+            )}
+          </div>
+
+          {/* Quick Info Cards */}
+          <div className="grid md:grid-cols-2 gap-6">
+            <div className="bg-gradient-to-br from-[#25215C] to-[#1a1643] rounded-xl p-6 text-white">
+              <h3 className="text-xl font-bold mb-2">Response Time</h3>
+              <p className="text-white/90">
+                We typically respond to all enquiries within 24 hours during
+                business days.
+              </p>
+            </div>
+            <div className="bg-gradient-to-br from-[#D04418] to-[#a03311] rounded-xl p-6 text-white">
+              <h3 className="text-xl font-bold mb-2">No Obligation</h3>
+              <p className="text-white/90">
+                This consultation is completely free with no commitment. We're
+                here to help you make the best decision.
+              </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Additional Support */}
-      <section className="py-12 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <div className="glass-white rounded-3xl p-8 shadow-blue border border-gray-100 max-w-4xl mx-auto text-center">
-            <h3 className="text-3xl font-bold text-gray-900 mb-4">
-              Need Personalized Guidance?
-            </h3>
-            <p className="text-gray-600 mb-8 text-lg leading-relaxed">
-              Our admissions advisors are ready to assist you with any questions
-              about programs, applications, or campus life.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button className="bg-gradient-to-r from-pink-500 via-rose-500 to-pink-600 text-white font-bold px-8 py-4 rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
-                <Phone className="w-5 h-5 mr-2" />
-                Call Us: +1-800-OMNISCIENT
-              </Button>
-              <Button className="border-2 border-pink-300 text-pink-600 hover:bg-pink-500 hover:text-white font-bold px-8 py-4 rounded-xl bg-white/80 backdrop-blur-sm hover:shadow-xl transition-all duration-300 transform hover:scale-105">
-                <MailCheck className="w-5 h-5 mr-2" />
-                Send An Email
-              </Button>
-            </div>
-          </div>
+      {/* Enquire Now CTA */}
+      <section className="bg-gradient-to-r from-[#25215C] to-[#D04418] py-16 md:py-20">
+        <div className="container mx-auto px-6 md:px-8 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+            Ready to Take the Next Step?
+          </h2>
+          <p className="text-lg text-white/90 mb-8 max-w-2xl mx-auto">
+            Let's discuss your educational goals and find the perfect program
+            for you.
+          </p>
+          <Button
+            onClick={() =>
+              document
+                .querySelector("form")
+                ?.scrollIntoView({ behavior: "smooth" })
+            }
+            className="bg-white text-[#25215C] hover:bg-gray-100 font-bold px-8 py-4 rounded-lg text-lg"
+          >
+            Enquire Now
+          </Button>
         </div>
       </section>
-
-      <Footer />
-    </div>
+    </main>
   );
 }
