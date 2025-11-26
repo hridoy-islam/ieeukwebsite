@@ -100,7 +100,7 @@ export default function AboutPage() {
             <div className="relative hidden md:block">
               <div className="rounded-2xl overflow-hidden shadow-lg h-96">
                 <img
-                  src="/international-education-students.jpg"
+                  src="/aboutpage.jpg"
                   alt="About IEE"
                   className="w-full h-full object-cover"
                 />
@@ -179,7 +179,7 @@ export default function AboutPage() {
             <div className="relative hidden md:block">
               <div className="rounded-2xl overflow-hidden shadow-lg h-96">
                 <img
-                  src="/for-international-700x600.jpg"
+                  src="/aboutpage2.jpg"
                   alt="International Students"
                   className="w-full "
                 />

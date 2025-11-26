@@ -9,109 +9,15 @@ import {
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { useState } from "react";
+import { courses } from "@/utils/courseData";
 
 export default function CoursesPage() {
-  const allCourses = [
-    {
-      name: "BSc Computer Science",
-      university: "University of Manchester",
-      duration: "3 Years",
-      fees: "£9,250/year (UK)",
-      description:
-        "A comprehensive program covering fundamental and advanced concepts in computing, software development, and artificial intelligence.",
-      image: "/computer-science-students.jpg",
-      link: "#",
-    },
-    {
-      name: "MBA International Business",
-      university: "University of London",
-      duration: "1 Year",
-      fees: "£25,000 (Intl)",
-      description:
-        "An intensive Master of Business Administration focusing on global markets, strategy, and leadership in an international context.",
-      image: "/business-school-students.jpg",
-      link: "#",
-    },
-    {
-      name: "MSc Data Science",
-      university: "University of Edinburgh",
-      duration: "1 Year",
-      fees: "£15,000 (UK)",
-      description:
-        "Develop expertise in data analysis, machine learning, and statistical modeling to solve complex real-world problems.",
-      image: "/data-science-analytics.jpg",
-      link: "#",
-    },
-    {
-      name: "MEng Mechanical Engineering",
-      university: "Imperial College London",
-      duration: "4 Years",
-      fees: "£9,250/year (UK)",
-      description:
-        "A rigorous engineering program focusing on design, analysis, and manufacturing of mechanical systems.",
-      image: "/mechanical-engineering.jpg",
-      link: "#",
-    },
-    {
-      name: "BA (Hons) Law",
-      university: "University of Birmingham",
-      duration: "3 Years",
-      fees: "£9,250/year (UK)",
-      description:
-        "A foundational law degree covering core legal principles, critical thinking, and legal research skills.",
-      image: "/law-school-students.jpg",
-      link: "#",
-    },
-    {
-      name: "BSc Psychology",
-      university: "University of Glasgow",
-      duration: "3 Years",
-      fees: "£9,250/year (UK)",
-      description:
-        "Explore the science of mind and behavior, covering cognitive, developmental, social, and clinical psychology.",
-      image: "/psychology-education.jpg",
-      link: "#",
-    },
-    {
-      name: "BEng Chemical Engineering",
-      university: "University of Cambridge",
-      duration: "3 Years",
-      fees: "£9,250/year (UK)",
-      description:
-        "Study the design and manufacture of chemical and pharmaceutical products with industrial applications.",
-      image: "/chemical-engineering.jpg",
-      link: "#",
-    },
-    {
-      name: "MSc Finance",
-      university: "London School of Economics",
-      duration: "1 Year",
-      fees: "£28,000 (Intl)",
-      description:
-        "Advanced program in financial markets, investment analysis, and corporate finance for aspiring finance professionals.",
-      image: "/finance-investment.png",
-      link: "#",
-    },
-    {
-      name: "BSc Nursing",
-      university: "University of Oxford",
-      duration: "3 Years",
-      fees: "£9,250/year (UK)",
-      description:
-        "Comprehensive nursing program combining clinical practice with theoretical knowledge in healthcare delivery.",
-      image: "/nursing-healthcare.jpg",
-      link: "#",
-    },
-  ];
-
   const coursesPerPage = 6;
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
 
-  const filteredCourses = allCourses.filter(
-    (course) =>
-      course.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      course.university.toLowerCase().includes(searchTerm.toLowerCase())
+  const filteredCourses = courses.filter((course) =>
+    course.title.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   const totalPages = Math.ceil(filteredCourses.length / coursesPerPage);
@@ -178,29 +84,23 @@ export default function CoursesPage() {
                       course.image ||
                       "/placeholder.svg?height=150&width=250&query=university course"
                     }
-                    alt={course.name}
+                    alt={course.title}
                     className="w-full h-40 object-cover"
                   />
                   <div className="p-6">
                     <h3 className="text-2xl font-bold text-gray-900 mb-2">
-                      {course.name}
+                      {course.title}
                     </h3>
-                    <p className="text-gray-600 flex items-center space-x-2 mb-2">
-                      <GraduationCap className="w-5 h-5 text-[#25215C]" />
-                      <span>{course.university}</span>
-                    </p>
-                    <p className="text-gray-600 flex items-center space-x-2 mb-4">
-                      <Clock className="w-5 h-5 text-[#D04418]" />
-                      <span>{course.duration}</span>
-                      <DollarSign className="w-5 h-5 text-[#25215C] ml-4" />
-                      <span>{course.fees}</span>
-                    </p>
-                    <p className="text-gray-700 leading-relaxed mb-6 line-clamp-3">
-                      {course.description}
-                    </p>
+                    <div
+                    className="prose prose-lg max-w-none text-gray-700 leading-relaxed pb-4"
+                    dangerouslySetInnerHTML={{
+                      __html: course.content?.slice(0, 80) + "...",
+                    }}
+                  />
+
                     <Button className="w-full font-semibold py-3 rounded-full bg-[#25215C] text-white hover:bg-[#1A1745] transition-all">
                       <Link
-                        href={course.link}
+                        href={`/courses/${course.slug}`}
                         className="flex items-center justify-center gap-2"
                       >
                         View Details
@@ -256,59 +156,61 @@ export default function CoursesPage() {
           )} */}
 
           {totalPages > 1 && (
-            <div className="flex justify-center items-center gap-3 mt-12 pt-8 border-t border-gray-200">
-              {/* Previous */}
-              <button
-                onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
-                disabled={currentPage === 1}
-                className={`px-4 py-2 rounded-xl text-sm font-medium transition-all
-        ${
-          currentPage === 1
-            ? "bg-gray-200 text-gray-500 cursor-not-allowed"
-            : "bg-white border border-gray-300 text-gray-700 hover:bg-gray-50"
+  <div className="flex justify-center items-center gap-3 mt-12 pt-8 border-t border-gray-200 flex-wrap">
+    
+    {/* Previous Button */}
+    <button
+      onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
+      disabled={currentPage === 1}
+      className={`px-3 md:px-4 py-2 rounded-xl text-sm font-medium transition-all
+        ${currentPage === 1
+          ? "bg-gray-200 text-gray-500 cursor-not-allowed"
+          : "bg-white border border-gray-300 text-gray-700 hover:bg-gray-50"
         }
       `}
-              >
-                Previous
-              </button>
+    >
+      Previous
+    </button>
 
-              {/* Page numbers */}
-              {Array.from({ length: totalPages }, (_, i) => i + 1).map(
-                (page) => (
-                  <button
-                    key={page}
-                    onClick={() => setCurrentPage(page)}
-                    className={`px-4 py-2 rounded-xl text-sm font-medium transition-all
-          ${
-            currentPage === page
+    {/* Page Numbers (Hidden on small screens) */}
+    <div className="hidden sm:flex gap-2 max-w-full overflow-x-auto">
+      {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+        <button
+          key={page}
+          onClick={() => setCurrentPage(page)}
+          className={`px-3 md:px-4 py-2 rounded-xl text-sm font-medium transition-all
+            ${currentPage === page
               ? "bg-[#25215C] text-white shadow-md"
               : "bg-white border border-gray-300 text-gray-700 hover:bg-gray-50"
-          }
-        `}
-                  >
-                    {page}
-                  </button>
-                )
-              )}
+            }
+          `}
+        >
+          {page}
+        </button>
+      ))}
+    </div>
 
-              {/* Next */}
-              <button
-                onClick={() =>
-                  setCurrentPage((p) => Math.min(totalPages, p + 1))
-                }
-                disabled={currentPage === totalPages}
-                className={`px-4 py-2 rounded-xl text-sm font-medium transition-all
-        ${
-          currentPage === totalPages
-            ? "bg-gray-200 text-gray-500 cursor-not-allowed"
-            : "bg-white border border-gray-300 text-gray-700 hover:bg-gray-50"
+    {/* Page Indicator (Visible only on mobile) */}
+    <span className="sm:hidden text-gray-600 text-sm font-medium">
+      Page {currentPage} of {totalPages}
+    </span>
+
+    {/* Next Button */}
+    <button
+      onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
+      disabled={currentPage === totalPages}
+      className={`px-3 md:px-4 py-2 rounded-xl text-sm font-medium transition-all
+        ${currentPage === totalPages
+          ? "bg-gray-200 text-gray-500 cursor-not-allowed"
+          : "bg-white border border-gray-300 text-gray-700 hover:bg-gray-50"
         }
       `}
-              >
-                Next
-              </button>
-            </div>
-          )}
+    >
+      Next
+    </button>
+  </div>
+)}
+
         </div>
       </section>
 

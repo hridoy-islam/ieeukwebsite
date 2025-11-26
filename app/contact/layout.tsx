@@ -1,18 +1,18 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Contact",
+  title: "Contact | International Education Exchange",
   description:
-    "Get in touch with Omniscient Education. Reach us by phone, email, or visit our London office to start your educational journey today.",
+    "Get in touch with International Education Exchange. Reach us by phone, email, or visit our London office to start your educational journey today.",
   openGraph: {
     title: "Contact",
     description:
-      "Connect with Omniscient Education—visit our office, call, or email us. We're here to guide you every step of your academic journey.",
+      "Connect with International Education Exchange—visit our office, call, or email us. We're here to guide you every step of your academic journey.",
     url: "/contact",
-    siteName: "Omniscient Education",
+    siteName: "International Education Exchange",
     images: [
       {
-        url: "/logo.jpg",
+        url: "/logo.png",
         width: 1200,
         height: 630,
         alt: "Contact",
@@ -25,8 +25,8 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Contact",
     description:
-      "Contact Omniscient Education today. We're here to help you achieve your educational and career goals.",
-    images: ["/logo.jpg"],
+      "Contact International Education Exchange today. We're here to help you achieve your educational and career goals.",
+    images: ["/logo.png"],
   },
   alternates: {
     canonical: "/contact",

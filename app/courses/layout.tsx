@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
- title: "Courses",
+ title: "Courses | International Education Exchange",
   description:
-    "Explore Omniscient Education’s world-class programs designed to advance your career and unlock new opportunities through expert-led courses.",
+    "Explore International Education Exchange’s world-class programs designed to advance your career and unlock new opportunities through expert-led courses.",
     keywords: [
-    "Omniscient Education courses",
+    "International Education Exchange courses",
     "UK university programs",
     "international education",
     "career development",
@@ -19,9 +19,9 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Courses",
     description:
-      "Discover Omniscient Education’s global education programs. Join thousands of students transforming their careers with expert-led courses.",
+      "Discover International Education Exchange’s global education programs. Join thousands of students transforming their careers with expert-led courses.",
     url: "/courses",
-    siteName: "Omniscient Education",
+    siteName: "International Education Exchange",
     images: [
       {
         url: "/logo.jpg",
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Courses",
     description:
-      "Browse Omniscient Education’s programs designed to unlock your potential. Start your learning journey today with expert guidance.",
+      "Browse International Education Exchange’s programs designed to unlock your potential. Start your learning journey today with expert guidance.",
     images: ["/logo.jpg"],
   },
   alternates: {

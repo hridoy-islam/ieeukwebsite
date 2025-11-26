@@ -1,4 +1,5 @@
-import { courses } from "@/utils/courseData";
+
+import { blogs } from "@/utils/blog";
 import type { Metadata } from "next";
 
 interface PageProps {
@@ -8,35 +9,35 @@ interface PageProps {
 export async function generateMetadata(props: PageProps): Promise<Metadata> {
   const { slug } = await props.params;
 
-  // Find course by slug or fallback
-  const course = courses.find((c) => c.slug === slug) || {
-    title: "Courses",
+  // Find blog by slug or fallback
+  const blog = blogs.find((c) => c.slug === slug) || {
+    title: "blogs",
     description:
-      "Explore International Education Exchange courses in Business, Technology, Healthcare, and Education. Find the right program for your career and academic goals.",
+      "Explore International Education Exchange blogs in Business, Technology, Healthcare, and Education. Find the right program for your career and academic goals.",
     image: "/educationTraining.jpg",
-    keywords: ["courses", "International Education Exchange", "higher education", "London college"],
+    keywords: ["blogs", "International Education Exchange", "higher education", "London college"],
   };
 
   // Build dynamic keywords
   const keywords = [
     "International Education Exchange",
-    course.title,
+    blog.title,
    
   ];
 
   return {
-    title: `${course.title} | International Education Exchange`,
+    title: `${blog.title} | International Education Exchange`,
     keywords,
     openGraph: {
-      title: `${course.title} | International Education Exchange`,
-      url: `/courses/${slug}`,
+      title: `${blog.title} | International Education Exchange`,
+      url: `/blog/${slug}`,
       siteName: "International Education Exchange",
       images: [
         {
-          url: course.image,
+          url: blog.image,
           width: 1200,
           height: 630,
-          alt: course.title,
+          alt: blog.title,
         },
       ],
       type: "website",
@@ -44,11 +45,11 @@ export async function generateMetadata(props: PageProps): Promise<Metadata> {
     },
     twitter: {
       card: "summary_large_image",
-      title: `${course.title} | International Education Exchange`,
-      images: [course.image],
+      title: `${blog.title} | International Education Exchange`,
+      images: [blog.image],
     },
     alternates: {
-      canonical: `/courses/${slug}`,
+      canonical: `/blog/${slug}`,
     },
   };
 }

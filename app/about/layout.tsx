@@ -1,18 +1,18 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "About",
+  title: "About | International Education Exchange",
   description:
-    "Learn more about Omniscient Education—our mission, values, and global team. We connect students with world-class universities and provide expert guidance for academic and career success.",
+    "Learn more about International Education Exchange—our mission, values, and global team. We connect students with world-class universities and provide expert guidance for academic and career success.",
   openGraph: {
     title: "About",
     description:
-      "Discover Omniscient Education’s mission, values, and expert team dedicated to helping students achieve their goals through world-class education opportunities.",
+      "Discover International Education Exchange’s mission, values, and expert team dedicated to helping students achieve their goals through world-class education opportunities.",
     url: "/about",
-    siteName: "Omniscient Education",
+    siteName: "International Education Exchange",
     images: [
       {
-        url: "/logo.jpg", // Replace with actual image if needed
+        url: "/aboutpage.jpg", // Replace with actual image if needed
         width: 1200,
         height: 630,
         alt: "About",
@@ -25,11 +25,11 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "About",
     description:
-      "Learn more about Omniscient Education—our mission, values, and team of global advisors dedicated to guiding students toward success.",
-    images: ["/logo.jpg"], // Replace with actual image if needed
+      "Learn more about International Education Exchange—our mission, values, and team of global advisors dedicated to guiding students toward success.",
+    images: ["/aboutpage.jpg"], // Replace with actual image if needed
   },
   alternates: {
-    canonical: "/about",
+    canonical: "/aboutpage.jpg",
   },
 };
 

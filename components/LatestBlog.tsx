@@ -2,8 +2,15 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import { blogs } from "@/utils/blog";
+import moment from "moment";
 
 export default function LatestBlog() {
+  // Sort blogs by newest date and take only latest 3
+  const latestBlogs = [...blogs]
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+    .slice(0, 3);
+
   return (
     <section className="py-20 md:py-24 bg-gray-50">
       <div className="container mx-auto px-6 md:px-8">
@@ -17,51 +24,38 @@ export default function LatestBlog() {
         </div>
 
         <div className="grid md:grid-cols-3 gap-8">
-          {[
-            {
-              title:
-                "MPs call for student Covid disruption funding in England to be doubled",
-              date: "January 30, 2021",
-              excerpt:
-                "A cross-party group of MPs and peers is calling for the government to…",
-            },
-            {
-              title:
-                "4-year post-study work visa: Is the UK offering this to international students?",
-              date: "June 20, 2020",
-              excerpt:
-                "The UK's former universities minister Jo Johnson has called for the duration of…",
-            },
-            {
-              title: "Self-assess for HE progression: T4 sponsor update",
-              date: "June 15, 2020",
-              excerpt:
-                "New Tier 4 guidance issued on April 20 from the UK government includes…",
-            },
-          ].map((blog, idx) => (
-            <div
+          {latestBlogs.map((blog, idx) => (
+            <Link
               key={idx}
-              className="bg-white rounded-xl overflow-hidden border border-gray-200 hover:shadow-xl transition-all duration-300 group cursor-pointer"
+              href={`/blog/${blog.slug}`}
+              className="bg-white rounded-xl overflow-hidden border border-gray-200 
+              hover:shadow-xl transition-all duration-300 group cursor-pointer block"
             >
               <div className="h-40 bg-gradient-to-br from-[#25215C]/10 to-[#D04418]/10 overflow-hidden">
                 <img
-                  src={`/placeholder.svg?height=200&width=400&query=education blog article`}
+                  src={blog.image}
                   alt={blog.title}
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
                 />
               </div>
               <div className="p-6">
                 <p className="text-sm text-[#D04418] font-semibold mb-2">
-                  {blog.date}
+                  {moment(blog.date).format("DD MMM, YYYY")}
                 </p>
-                <h3 className="text-lg font-bold text-[#25215C] mb-3 group-hover:text-[#D04418] transition-colors leading-snug line-clamp-2">
+
+                <h3 className="text-lg font-bold text-[#25215C] mb-3 
+                  group-hover:text-[#D04418] transition-colors leading-snug line-clamp-2"
+                >
                   {blog.title}
                 </h3>
-                <p className="text-gray-700 text-sm leading-relaxed">
-                  {blog.excerpt}
-                </p>
+                <div
+                    className="prose prose-lg max-w-none text-gray-700 leading-relaxed pb-4"
+                    dangerouslySetInnerHTML={{
+                      __html: blog.content?.slice(0, 80) + "...",
+                    }}
+                  />
               </div>
-            </div>
+            </Link>
           ))}
         </div>
 

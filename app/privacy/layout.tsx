@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy",
+  title: "Privacy Policy | International Education Exchange",
   description:
-    "Read Omniscient Education’s Privacy Policy to understand how we collect, use, store, and protect your personal information in compliance with UK GDPR and the Data Protection Act 2018.",
+    "Read International Education Exchange’s Privacy Policy to understand how we collect, use, store, and protect your personal information in compliance with UK GDPR and the Data Protection Act 2018.",
   keywords: [
-    "Omniscient Education privacy policy",
+    "International Education Exchange privacy policy",
     "UK GDPR compliance",
     "data protection",
     "student privacy policy",
@@ -19,15 +19,15 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Privacy Policy",
     description:
-      "Omniscient Education is committed to protecting your personal data in line with UK GDPR and the Data Protection Act 2018. Learn more about how we handle your information.",
+      "International Education Exchange is committed to protecting your personal data in line with UK GDPR and the Data Protection Act 2018. Learn more about how we handle your information.",
     url: "/privacy",
-    siteName: "Omniscient Education",
+    siteName: "International Education Exchange",
     images: [
       {
-        url: "/logo.jpg",
+        url: "/logo.png",
         width: 1200,
         height: 630,
-        alt: "Privacy Policy - Omniscient Education",
+        alt: "Privacy Policy - International Education Exchange",
       },
     ],
     type: "website",
@@ -37,8 +37,8 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Privacy Policy",
     description:
-      "Learn how Omniscient Education collects, stores, and protects your personal information under UK GDPR and the Data Protection Act 2018.",
-    images: ["/logo.jpg"],
+      "Learn how International Education Exchange collects, stores, and protects your personal information under UK GDPR and the Data Protection Act 2018.",
+    images: ["/logo.png"],
   },
   alternates: {
     canonical: "/privacy",

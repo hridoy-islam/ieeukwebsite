@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
- title: "Services | International Education Exchange",
+ title: "Our Services | International Education Exchange",
   description:
     "Discover International Education Exchange’s comprehensive services including international admissions, study abroad guidance, visa application support, UK & EU admission assistance, CV training, interview preparation, and more.",
   keywords: [
@@ -21,10 +21,10 @@ export const metadata: Metadata = {
     "career development guidance",
   ],
   openGraph: {
-    title: "Services",
+    title: "Our Services",
     description:
       "Explore our wide range of services including admission applications, visa support, CV & personal statement training, interview preparation, and English courses for EU & UK students.",
-    url: "/services",
+    url: "/our-services",
     siteName: "International Education Exchange",
     images: [
       {
@@ -39,13 +39,13 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Services",
+    title: "Our Services",
     description:
       "International Education Exchange provides expert-led services to support your academic journey — from applications and visa processing to interview training and free English courses.",
     images: ["/logo.png"],
   },
   alternates: {
-    canonical: "/services",
+    canonical: "/our-services",
   },
 };
 

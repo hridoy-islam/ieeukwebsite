@@ -9,7 +9,7 @@ export default function About() {
           <div className="relative hidden md:block">
             <div className="rounded-2xl overflow-hidden shadow-lg h-96">
               <img
-                src="/happy-two-students.jpg"
+                src="/aboutiee.jpg"
                 alt="About IEE"
                 className="w-full h-full object-cover"
               />

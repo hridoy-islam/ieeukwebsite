@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Terms & Conditions",
+  title: "Terms & Conditions | International Education Exchange",
   description:
-    "Read Omniscient Education’s Terms & Conditions to understand the rules, intellectual property rights, liability limitations, and legal obligations when using our website and services.",
+    "Read International Education Exchange’s Terms & Conditions to understand the rules, intellectual property rights, liability limitations, and legal obligations when using our website and services.",
   keywords: [
-    "Omniscient Education terms",
+    "International Education Exchange terms",
     "terms and conditions",
     "website use policy",
     "intellectual property",
@@ -14,20 +14,20 @@ export const metadata: Metadata = {
     "UK education website terms",
     "student services terms",
     "website usage policy",
-    "Omniscient Education legal notice"
+    "International Education Exchange legal notice"
   ],
   openGraph: {
     title: "Terms & Conditions",
     description:
-      "Review Omniscient Education’s Terms & Conditions for website usage, intellectual property, liability, and governing law.",
+      "Review International Education Exchange’s Terms & Conditions for website usage, intellectual property, liability, and governing law.",
     url: "/terms",
-    siteName: "Omniscient Education",
+    siteName: "International Education Exchange",
     images: [
       {
-        url: "/omniscient-logo.png",
+        url: "/logo.png",
         width: 1200,
         height: 630,
-        alt: "Terms & Conditions - Omniscient Education",
+        alt: "Terms & Conditions - International Education Exchange",
       },
     ],
     type: "website",
@@ -37,8 +37,8 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Terms & Conditions",
     description:
-      "Learn the Terms & Conditions for using Omniscient Education’s website, including intellectual property, liability, and legal compliance.",
-    images: ["/omniscient-logo.png"],
+      "Learn the Terms & Conditions for using International Education Exchange’s website, including intellectual property, liability, and legal compliance.",
+    images: ["/logo.png"],
   },
   alternates: {
     canonical: "/terms",

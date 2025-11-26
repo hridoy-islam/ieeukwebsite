@@ -3,34 +3,12 @@
 import { ArrowRight, Clock, GraduationCap } from "lucide-react";
 import { Button } from "./ui/button";
 import Link from "next/link";
+import { courses } from "@/utils/courseData";
 
 export default function CoursesSection() {
-  const featuredCourses = [
-    {
-      name: "BSc Computer Science",
-      university: "University of Manchester",
-      duration: "3 Years",
-      fees: "£9,250/year",
-      description: "Comprehensive program covering computing and AI",
-      image: "/computer-science-university.png",
-    },
-    {
-      name: "MBA International Business",
-      university: "University of London",
-      duration: "1 Year",
-      fees: "£25,000",
-      description: "Master's degree in global business and strategy",
-      image: "/business-school-mba.jpg",
-    },
-    {
-      name: "MSc Data Science",
-      university: "University of Edinburgh",
-      duration: "1 Year",
-      fees: "£15,000",
-      description: "Advanced analytics and machine learning expertise",
-      image: "/data-science-analytics.jpg",
-    },
-  ];
+  const latestCourses = [...courses]
+     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+     .slice(0, 3);
   return (
     <section className="py-20 md:py-24 bg-white">
       <div className="container mx-auto px-6 md:px-8">
@@ -43,34 +21,30 @@ export default function CoursesSection() {
           </p>
         </div>
         <div className="grid md:grid-cols-3 gap-8">
-          {featuredCourses.map((course, idx) => (
+          {latestCourses.map((course, idx) => (
             <div
               key={idx}
               className="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl border border-gray-200 hover:border-[#D04418] transition-all duration-300 transform hover:-translate-y-2"
             >
               <img
                 src={course.image || "/placeholder.svg"}
-                alt={course.name}
+                alt={course.title}
                 className="w-full h-40 object-cover group-hover:scale-110 transition-transform duration-300"
               />
               <div className="p-6">
                 <h3 className="text-lg font-bold text-gray-900 mb-2 line-clamp-2">
-                  {course.name}
+                  {course.title}
                 </h3>
-                <p className="text-gray-600 flex items-center space-x-2 mb-2 text-sm">
-                  <GraduationCap className="w-4 h-4 text-[#25215C]" />
-                  <span>{course.university}</span>
-                </p>
-                <p className="text-gray-600 flex items-center space-x-2 mb-4 text-sm">
-                  <Clock className="w-4 h-4 text-[#D04418]" />
-                  <span>{course.duration}</span>
-                </p>
-                <p className="text-gray-700 leading-relaxed mb-6 line-clamp-2 text-sm">
-                  {course.description}
-                </p>
+               
+                <div
+                    className="prose prose-lg max-w-none text-gray-700 leading-relaxed pb-4"
+                    dangerouslySetInnerHTML={{
+                      __html: course.content?.slice(0, 80) + "...",
+                    }}
+                  />
                 <Button className="w-full font-semibold py-2 rounded-full bg-[#25215C] text-white hover:bg-[#1A1745] transition-all text-sm">
                   <Link
-                    href="/courses"
+                    href={`/courses/${course.slug}`}
                     className="flex items-center justify-center gap-2"
                   >
                     View Details

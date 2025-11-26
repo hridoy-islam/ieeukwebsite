@@ -12,6 +12,7 @@
     "@nextui-org/navbar": "^2.0.27",
     "@nextui-org/react": "^2.2.9",
     "@react-pdf/renderer": "^3.3.4",
+    "@tailwindcss/typography": "^0.5.19",
     "@types/jsonwebtoken": "^9.0.5",
     "axios": "^1.6.5",
     "cookies-next": "^4.1.0",
