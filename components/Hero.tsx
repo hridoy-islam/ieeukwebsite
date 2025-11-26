@@ -3,6 +3,9 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, Users, TrendingUp, Sparkles } from "lucide-react";
 import Link from "next/link";
 
+import Lottie from "lottie-react";
+import heroAnimation from "@/public/heroAnimation.json";
+
 export default function Hero() {
   return (
     <section className="relative overflow-hidden bg-white pt-20 pb-20 md:pt-32 md:pb-32">
@@ -105,16 +108,19 @@ export default function Hero() {
               <div className="absolute -bottom-10 -left-10 w-48 h-48 bg-gradient-to-br from-[#25215C] to-[#25215C]/30 rounded-3xl opacity-20 blur-2xl"></div>
 
               {/* Main Image Container */}
-              <div className="relative rounded-3xl overflow-hidden shadow-2xl h-96 bg-gradient-to-br from-[#25215C]/5 to-[#D04418]/5 border border-[#D04418]/20">
-                <img
-                  src="/students.jpg"
-                  alt="UK Education"
-                  className="w-full h-full object-cover"
+              <div className="relative  overflow-hidden  h-96  ">
+            
+
+                <Lottie
+                  animationData={heroAnimation}
+                  loop={true}
+                  autoplay={true}
+            
                 />
               </div>
 
               {/* Floating Stats Cards */}
-              <div
+              {/* <div
                 className="absolute -bottom-6 -left-6 bg-white p-4 rounded-2xl shadow-2xl border border-[#D04418]/10"
                 style={{ animation: "float 3s ease-in-out infinite" }}
               >
@@ -127,9 +133,9 @@ export default function Hero() {
                     <p className="text-xs text-gray-600">Success Rate</p>
                   </div>
                 </div>
-              </div>
+              </div> */}
 
-              <div
+              {/* <div
                 className="absolute -top-4 -right-4 bg-white p-4 rounded-2xl shadow-2xl border border-[#D04418]/10"
                 style={{
                   animation: "float 3s ease-in-out infinite",
@@ -145,7 +151,7 @@ export default function Hero() {
                     <p className="text-xs text-gray-600">Universities</p>
                   </div>
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
