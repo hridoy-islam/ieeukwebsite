@@ -6,16 +6,19 @@ import LatestBlog from "@/components/LatestBlog";
 import CoursesSection from "@/components/CoursesSection";
 import FeatureService from "@/components/FeatureService";
 import Statstics from "@/components/Statastics";
+import TestimonialSlider from "@/components/TestimonialSlider";
 
 export default function HomePage() {
   return (
     <div className="min-h-screen bg-white">
       <Hero />
+      {/* <HeroImage/> */}
       <About />
       <Statstics />
       <FeatureService />
-      <CoursesSection />
+      {/* <CoursesSection /> */}
       <LatestBlog />
+      <TestimonialSlider/>
       <CtaSection />
     </div>
   );
