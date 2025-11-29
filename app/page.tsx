@@ -17,8 +17,8 @@ export default function HomePage() {
       <Statstics />
       <FeatureService />
       {/* <CoursesSection /> */}
-      <LatestBlog />
       <TestimonialSlider/>
+      <LatestBlog />
       <CtaSection />
     </div>
   );

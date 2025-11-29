@@ -3,13 +3,13 @@ import { CheckCircle } from "lucide-react";
 
 export default function About() {
   return (
-    <section className="py-20 md:py-24 relative">
+    <section className="py-20 md:py-36 relative">
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: "url('/uk.jpg')" }}
       >
         {/* Dark overlay ONLY for bg */}
-        <div className="absolute inset-0 bg-black/40"></div>
+        <div className="absolute inset-0 bg-black/70"></div>
       </div>
       <div className="relative container mx-auto px-6 md:px-8 ">
         <div className="grid md:grid-cols-2 gap-12 items-center">

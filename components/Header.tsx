@@ -32,7 +32,7 @@ export default function Header() {
         { name: "Global Branches", href: "/global-branches" },
       ],
     },
-    { name: "Courses", href: "/courses" },
+    { name: "Courses", href: "/course-search" },
     { name: "Blog", href: "/blog" },
     { name: "Contact", href: "/contact" },
   ];
