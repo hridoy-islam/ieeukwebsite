@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
- title: "Course Search | International Education Exchange",
+ title: "Courses | International Education Exchange",
   description:
     "Explore International Education Exchange’s world-class programs designed to advance your career and unlock new opportunities through expert-led courses.",
     keywords: [
@@ -17,10 +17,10 @@ export const metadata: Metadata = {
     "expert-led learning",
   ],
   openGraph: {
-    title: "Course Search",
+    title: "Courses",
     description:
       "Discover International Education Exchange’s global education programs. Join thousands of students transforming their careers with expert-led courses.",
-    url: "/course-search",
+    url: "/courses",
     siteName: "International Education Exchange",
     images: [
       {
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Course Search",
+    title: "Courses",
     description:
       "Browse International Education Exchange’s programs designed to unlock your potential. Start your learning journey today with expert guidance.",
     images: ["/logo.jpg"],
