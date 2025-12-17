@@ -20,7 +20,7 @@ export default function CookiesPolicyPage() {
             Cookie Policy
           </h1>
           <p className="text-lg text-white/90">
-            Learn how Omniscient Education uses cookies to improve your
+            Learn how International Education Exchange  uses cookies to improve your
             experience.
           </p>
         </div>
