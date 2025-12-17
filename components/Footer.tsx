@@ -24,10 +24,9 @@ export default function Footer() {
   ];
 
   const socialLinks = [
-    { icon: Facebook, href: "#", label: "Facebook" },
-    { icon: Twitter, href: "#", label: "Twitter" },
-    { icon: Linkedin, href: "#", label: "LinkedIn" },
-    { icon: Instagram, href: "#", label: "Instagram" },
+    { icon: Facebook, href: "https://www.facebook.com/IEEUKLtd/", label: "Facebook" },
+    { icon: Twitter, href: "https://x.com/Interna03380092", label: "Twitter" },
+    { icon: Instagram, href: "https://www.instagram.com/education.iee/", label: "Instagram" },
   ];
 
   return (

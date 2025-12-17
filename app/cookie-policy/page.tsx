@@ -1,28 +1,28 @@
 "use client";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import Link from "next/link";
 
 export default function CookiesPolicyPage() {
   return (
     <div className="min-h-screen bg-white">
-      <Header />
-
       {/* Hero Section */}
-      <section className="relative py-20 bg-gradient-to-br from-purple-50 to-pink-50 overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(147,51,234,0.1),transparent_50%)]"></div>
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="text-center max-w-4xl mx-auto">
-            <h1 className="text-5xl md:text-6xl font-black mb-6">
-              <span className="text-gray-900">Cookies </span>
-              <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
-                Policy
-              </span>
-            </h1>
-            <p className="text-xl md:text-2xl text-gray-600 leading-relaxed">
-              Learn how Omniscient Education uses cookies to improve your
-              experience.
-            </p>
-          </div>
+
+      <section className="bg-gradient-to-r from-[#25215C] to-[#D04418] py-12 md:py-16">
+        <div className="container mx-auto px-6 md:px-8">
+          <Link
+            href="/"
+            className="inline-flex items-center text-white/80 hover:text-white mb-6"
+          >
+            ← Back Home
+          </Link>
+          <h1 className="text-4xl md:text-5xl font-bold text-white mb-2">
+            Cookie Policy
+          </h1>
+          <p className="text-lg text-white/90">
+            Learn how Omniscient Education uses cookies to improve your
+            experience.
+          </p>
         </div>
       </section>
 
@@ -109,29 +109,27 @@ export default function CookiesPolicyPage() {
               contact:
               <br />
               <br />
-              <strong>Omniscient Education</strong>
+              <strong>International Education Exchange</strong>
               <br />
-              156 B Green Street
+              80-82 Nelson Street
               <br />
-              Upton Park
+              London, E1 2DY, UK
               <br />
-              London, E7 8JQ, U.K
-              <br />
-              📞 +44 (0) 203 0110 309
+              📞 +44 (0) 203 3719 168 / +44 (0) 73 6523 3764
               <br />
               ✉️{" "}
               <a
-                href="mailto:info@omniscient.org.uk"
+                href="mailto:info@ieeuk.com"
                 className="text-blue-600 underline"
               >
-                info@omniscient.org.uk
+                info@ieeuk.com
               </a>
             </p>
           </div>
         </div>
       </section>
 
-      <Footer />
+
     </div>
   );
 }

@@ -356,16 +356,7 @@ export default function ContactPage() {
                 </div>
               </div>
 
-              {/* Newsletter Signup */}
-              <div className="bg-gradient-to-br from-[#25215C] to-[#D04418] rounded-xl p-6 text-white">
-                <h4 className="font-bold mb-3">Register now to win an iPad*</h4>
-                <p className="text-sm text-white/80 mb-4">
-                  Subscribe to our newsletter for updates and exclusive offers.
-                </p>
-                <button className="w-full bg-white text-[#25215C] font-bold py-2 rounded-lg hover:bg-gray-100 transition-colors">
-                  REGISTER
-                </button>
-              </div>
+             
             </div>
           </div>
         </div>
