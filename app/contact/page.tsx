@@ -11,7 +11,13 @@ import {
   Share2,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 export default function ContactPage() {
   const [formData, setFormData] = useState({
     fullName: "",
@@ -24,25 +30,71 @@ export default function ContactPage() {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
+  // const handleSubmit = async (e: React.FormEvent) => {
+  //   e.preventDefault();
+  //   setIsLoading(true);
+
+  //   await new Promise((resolve) => setTimeout(resolve, 2000));
+
+  //   console.log("Form Data:", formData);
+  //   setIsSubmitted(true);
+  //   setIsLoading(false);
+
+  //   setTimeout(() => setIsSubmitted(false), 5000);
+  //   setFormData({
+  //     fullName: "",
+  //     email: "",
+  //     phone: "",
+  //     nationality: "",
+  //     countryToStudy: "",
+  //     interestedCourse: "",
+  //   });
+  // };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (isLoading) return; // Prevent double submission
     setIsLoading(true);
 
-    await new Promise((resolve) => setTimeout(resolve, 2000));
+    try {
+      // Send to admin
+      // const adminRes = await fetch("/api/send-email", {
+      //   method: "POST",
+      //   headers: { "Content-Type": "application/json" },
+      //   body: JSON.stringify(formData),
+      // });
 
-    console.log("Form Data:", formData);
-    setIsSubmitted(true);
-    setIsLoading(false);
+      // Send confirmation to user
+      const userRes = await fetch("/api/send-email-user", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
 
-    setTimeout(() => setIsSubmitted(false), 5000);
-    setFormData({
-      fullName: "",
-      email: "",
-      phone: "",
-      nationality: "",
-      countryToStudy: "",
-      interestedCourse: "",
-    });
+      if ( userRes.ok) {
+        setIsSubmitted(true);
+
+        // Reset form
+        setFormData({
+          fullName: "",
+          email: "",
+          phone: "",
+          nationality: "",
+          countryToStudy: "",
+          interestedCourse: "",
+        });
+
+        // Hide success message after 3 seconds
+        setTimeout(() => setIsSubmitted(false), 3000);
+      } else {
+        console.error("Failed to send message");
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+    } finally {
+      setIsLoading(false); // Always stop loading
+    }
   };
 
   const handleChange = (
@@ -51,6 +103,13 @@ export default function ContactPage() {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSelectChange = (name: string, value: string) => {
+    setFormData({
+      ...formData,
+      [name]: value,
     });
   };
 
@@ -235,21 +294,27 @@ export default function ContactPage() {
                         >
                           Select The Country You Want To Study: *
                         </label>
-                        <select
-                          id="countryToStudy"
-                          name="countryToStudy"
-                          required
+                        <Select
                           value={formData.countryToStudy}
-                          onChange={handleChange}
-                          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#D04418] focus:border-transparent"
+                          onValueChange={(value) =>
+                            handleSelectChange("countryToStudy", value)
+                          }
                         >
-                          <option value="">Please select</option>
-                          {countries.map((country) => (
-                            <option key={country} value={country}>
-                              {country}
-                            </option>
-                          ))}
-                        </select>
+                          <SelectTrigger
+                            id="countryToStudy"
+                            className="w-full h-auto px-4 py-3 border-gray-300 rounded-lg focus:ring-2 focus:ring-[#D04418] focus:ring-offset-0"
+                          >
+                            <SelectValue placeholder="Please select" />
+                          </SelectTrigger>
+
+                          <SelectContent>
+                            {countries.map((country) => (
+                              <SelectItem key={country} value={country}>
+                                {country}
+                              </SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
                       </div>
                       <div>
                         <label
@@ -355,8 +420,6 @@ export default function ContactPage() {
                   </div>
                 </div>
               </div>
-
-             
             </div>
           </div>
         </div>
