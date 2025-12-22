@@ -59,11 +59,11 @@ export default function ContactPage() {
 
     try {
       // Send to admin
-      // const adminRes = await fetch("/api/send-email", {
-      //   method: "POST",
-      //   headers: { "Content-Type": "application/json" },
-      //   body: JSON.stringify(formData),
-      // });
+      const adminRes = await fetch("/api/send-email", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
 
       // Send confirmation to user
       const userRes = await fetch("/api/send-email-user", {
