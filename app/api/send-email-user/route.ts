@@ -7,19 +7,17 @@ export async function POST(req: Request) {
   try {
     const { fullName ,email, phone, nationality,countryToStudy,interestedCourse } = await req.json();
 
-    // Configure the transporter with your custom SMTP settings
+   
     const transporter = nodemailer.createTransport({
-      host: "mail.ieeuk.com",
-      port: 465,
-      secure: true, 
-      auth: {
-        user: "info@ieeuk.com",
-        pass: "London@2024",
-      },
-      tls: {
-        rejectUnauthorized: false,
-      },
-    });
+  host: "mail.greensellers.co.uk",
+  port: 587,
+  secure: false, // IMPORTANT
+  auth: {
+    user: "info@ieeuk.com",
+    pass: "London@2024",
+  },
+  
+});
 
     // Render ejs template
     const templatePath = path.join(

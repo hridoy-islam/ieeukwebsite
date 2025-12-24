@@ -14,17 +14,17 @@ export async function POST(req: Request) {
       interestedCourse,
     } = await req.json();
 
-    // Configure the transporter with your custom SMTP settings
+ 
     const transporter = nodemailer.createTransport({
-      host: "mail.ieeuk.com",
-      port: 465,
-      secure: true, // Use true for port 465 (SSL/TLS)
+      host: "mail.greensellers.co.uk",
+      port: 587,
+      secure: false, // IMPORTANT
       auth: {
         user: "info@ieeuk.com",
         pass: "London@2024",
       },
       tls: {
-        rejectUnauthorized: false, // Helps with self-signed certs if needed
+        rejectUnauthorized: false,
       },
     });
 
@@ -45,8 +45,9 @@ export async function POST(req: Request) {
 
     const mailOptions = {
       from: `"IEEUK" <info@ieeuk.com>`, // authenticated sender
-      to: "info@ieeuk.com", // Recipient
-      subject: `New Contact Form Submission from ${name}`,
+      // to: "info@ieeuk.com", // Recipient
+      to: "thmahi3@gmail.com", // Recipient
+      subject: `New Contact Form Submission from ${fullName}`,
       html,
     };
 

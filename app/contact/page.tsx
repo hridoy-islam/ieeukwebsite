@@ -72,7 +72,7 @@ export default function ContactPage() {
         body: JSON.stringify(formData),
       });
 
-      if ( userRes.ok) {
+      if ( userRes.ok && adminRes.ok) {
         setIsSubmitted(true);
 
         // Reset form
@@ -85,7 +85,7 @@ export default function ContactPage() {
           interestedCourse: "",
         });
 
-        // Hide success message after 3 seconds
+       
         setTimeout(() => setIsSubmitted(false), 3000);
       } else {
         console.error("Failed to send message");
