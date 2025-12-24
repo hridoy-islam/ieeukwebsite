@@ -45,8 +45,8 @@ export async function POST(req: Request) {
 
     const mailOptions = {
       from: `"IEEUK" <info@ieeuk.com>`, // authenticated sender
-      // to: "info@ieeuk.com", // Recipient
-      to: "thmahi3@gmail.com", // Recipient
+      to: "info@ieeuk.com", // Recipient
+      // to: "thmahi3@gmail.com", // Recipient
       subject: `New Contact Form Submission from ${fullName}`,
       html,
     };
