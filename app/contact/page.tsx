@@ -400,20 +400,13 @@ export default function ContactPage() {
                         <div className="space-y-1 text-sm text-gray-600">
                           <p>
                             <a
-                              href="tel:+442033719168"
+                              href="tel:0208 0758 621"
                               className="text-[#D04418] hover:text-[#25215C] transition-colors"
                             >
-                              +44 (0) 203 3719 168
+                              0208 0758 621
                             </a>
                           </p>
-                          <p>
-                            <a
-                              href="tel:+442073652376"
-                              className="text-[#D04418] hover:text-[#25215C] transition-colors"
-                            >
-                              +44 (0) 73 6523 3764
-                            </a>
-                          </p>
+                          
                         </div>
                       </div>
                     </div>

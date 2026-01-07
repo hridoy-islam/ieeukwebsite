@@ -131,20 +131,13 @@ export default function Footer() {
                 <div className="text-gray-300 text-sm space-y-1">
                   <div>
                     <a
-                      href="tel:+441736523764"
+                      href="tel:0208 0758 621"
                       className="hover:text-iee-accent transition-colors"
                     >
-                      +44 (0)73 6523 3764
+                      0208 0758 621
                     </a>
                   </div>
-                  <div>
-                    <a
-                      href="tel:+441302089314"
-                      className="hover:text-iee-accent transition-colors"
-                    >
-                      +44 (0)203 089 1314
-                    </a>
-                  </div>
+                 
                 </div>
               </div>
               <div className="flex items-center space-x-3">
