@@ -32,6 +32,20 @@ export default function Header() {
         { name: "Global Branches", href: "/global-branches" },
       ],
     },
+    {
+      name: "Partner",
+      href: "/partner",
+      submenu: [
+        {
+          name: "Become a Partner",
+          href: "/partner/become-a-partner",
+        },
+        {
+          name: "UK Agent Quality Framework",
+          href: "/partner/uk-agent-quality-framework",
+        },
+      ],
+    },
     { name: "Courses", href: "/courses" },
     { name: "Blog", href: "/blog" },
     { name: "Contact", href: "/contact" },
